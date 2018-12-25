@@ -1,0 +1,50 @@
+PODS:
+  - DropDown (2.3.12)
+  - Fuse (1.2.0)
+  - FuzzyMatchingSwift (0.7.0)
+  - LCUIComponents (1.1.5)
+  - Realm (3.13.0):
+    - Realm/Headers (= 3.13.0)
+  - Realm/Headers (3.13.0)
+  - RealmSwift (3.13.0):
+    - Realm (= 3.13.0)
+  - TesseractOCRiOS (5.0.1)
+
+DEPENDENCIES:
+  - DropDown
+  - Fuse
+  - FuzzyMatchingSwift
+  - LCUIComponents
+  - RealmSwift
+  - TesseractOCRiOS (from `https://github.com/gali8/Tesseract-OCR-iOS.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DropDown
+    - Fuse
+    - FuzzyMatchingSwift
+    - LCUIComponents
+    - Realm
+    - RealmSwift
+
+EXTERNAL SOURCES:
+  TesseractOCRiOS:
+    :git: https://github.com/gali8/Tesseract-OCR-iOS.git
+
+CHECKOUT OPTIONS:
+  TesseractOCRiOS:
+    :commit: 8f8ffa2da13d267361abc992282d78412e1152c7
+    :git: https://github.com/gali8/Tesseract-OCR-iOS.git
+
+SPEC CHECKSUMS:
+  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
+  Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
+  FuzzyMatchingSwift: bcbeda92c3d16dc338b4bfa655d5848d66b884dd
+  LCUIComponents: 9e40b911c7155e30056f213cd67fed6c924a5115
+  Realm: 5edd2ee65406aef591a4f9895de5a3440e51b3d8
+  RealmSwift: be5ebc7930e37cd3376b41cec7f21984528aaa16
+  TesseractOCRiOS: 2c189465f86abb030d0c5141c90da9705b647854
+
+PODFILE CHECKSUM: 05eef806400440acae3e13e857cc9a6ffb63f23e
+
+COCOAPODS: 1.5.3
