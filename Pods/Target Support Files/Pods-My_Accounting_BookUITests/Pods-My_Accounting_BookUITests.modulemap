@@ -1,6 +1,0 @@
-framework module Pods_My_Accounting_BookUITests {
-  umbrella header "Pods-My_Accounting_BookUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
