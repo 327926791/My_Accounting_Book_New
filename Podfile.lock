@@ -1,31 +1,40 @@
 PODS:
-  - DropDown (2.3.12)
+  - DatePickerDialog (2.0)
+  - Dropper (2.7.6)
   - Fuse (1.2.0)
   - FuzzyMatchingSwift (0.7.0)
-  - LCUIComponents (1.1.5)
+  - iOSDropDown (0.2.7)
+  - OpenCV (3.4.2)
   - Realm (3.13.0):
     - Realm/Headers (= 3.13.0)
   - Realm/Headers (3.13.0)
   - RealmSwift (3.13.0):
     - Realm (= 3.13.0)
+  - SearchTextField (1.2.2)
   - TesseractOCRiOS (5.0.1)
 
 DEPENDENCIES:
-  - DropDown
+  - DatePickerDialog
+  - Dropper
   - Fuse
   - FuzzyMatchingSwift
-  - LCUIComponents
+  - iOSDropDown
+  - OpenCV
   - RealmSwift
+  - SearchTextField
   - TesseractOCRiOS (from `https://github.com/gali8/Tesseract-OCR-iOS.git`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - DropDown
+    - DatePickerDialog
+    - Dropper
     - Fuse
     - FuzzyMatchingSwift
-    - LCUIComponents
+    - iOSDropDown
+    - OpenCV
     - Realm
     - RealmSwift
+    - SearchTextField
 
 EXTERNAL SOURCES:
   TesseractOCRiOS:
@@ -37,14 +46,17 @@ CHECKOUT OPTIONS:
     :git: https://github.com/gali8/Tesseract-OCR-iOS.git
 
 SPEC CHECKSUMS:
-  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
+  DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
+  Dropper: 52a020beb6fef2e4b1d55447f17099e5776954ef
   Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
   FuzzyMatchingSwift: bcbeda92c3d16dc338b4bfa655d5848d66b884dd
-  LCUIComponents: 9e40b911c7155e30056f213cd67fed6c924a5115
+  iOSDropDown: 7a4cfc67d5166f319858747b63cd2f7760c4fb4b
+  OpenCV: 452909747854c92e0f59670961ed5131f5286cb5
   Realm: 5edd2ee65406aef591a4f9895de5a3440e51b3d8
   RealmSwift: be5ebc7930e37cd3376b41cec7f21984528aaa16
+  SearchTextField: a0992739d4b05dcbb40fb3a5cc6526bd991bdd23
   TesseractOCRiOS: 2c189465f86abb030d0c5141c90da9705b647854
 
-PODFILE CHECKSUM: 05eef806400440acae3e13e857cc9a6ffb63f23e
+PODFILE CHECKSUM: 064e31d41eb88d3f3e5f4dd7a76340d2dd06c7ae
 
 COCOAPODS: 1.5.3

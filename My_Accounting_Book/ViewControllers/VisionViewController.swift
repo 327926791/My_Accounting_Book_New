@@ -595,7 +595,25 @@ class VisionViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         CATransaction.commit()
         print(text.count)
-        croppedImg.image = cropImage(img: myImg, normalisedRect: normalise(box: text[4]))
+        if let tesseract = G8Tesseract(language: "eng") {
+            tesseract.delegate = self
+            for word in text {
+                //tesseract.image = cropImage(img: myImg, normalisedRect: normalise(box: word))!.g8_blackAndWhite()
+                let cropped = cropImage(img: myImg, normalisedRect: normalise(box: word))
+                let croppedBinary = OpenCVWrapper.imageProcessing(cropped!)
+                tesseract.image = croppedBinary
+                tesseract.recognize()
+                
+                let ed = extractDate(str: tesseract.recognizedText!)
+                if ed.count > 0 {
+                    print("*****************\(ed[0])")
+                }
+                
+                print(tesseract.recognizedText!)
+                
+            }
+        }
+        //croppedImg.image = cropImage(img: myImg, normalisedRect: normalise(box: text[text.count - 4]))!.g8_blackAndWhite()
     }
     
     // Barcodes are ORANGE.
@@ -630,7 +648,7 @@ class VisionViewController: UIViewController, UIImagePickerControllerDelegate, U
         let width = normalisedRect.width * image.size.width
         let height = normalisedRect.height * image.size.height
         
-        let rect = CGRect(x: x, y: y, width: width, height: height).scaleUp(scaleUp: 0.1)
+        let rect = CGRect(x: x, y: y, width: width, height: height).scaleUp(scaleUp: 0.08)
         
         print(rect.midX, rect.midY)
         
@@ -640,15 +658,134 @@ class VisionViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         let croppedImage = UIImage(cgImage: cropped, scale: image.scale, orientation: image.imageOrientation)
         
-        if let tesseract = G8Tesseract(language: "eng") {
-            tesseract.delegate = self
-            tesseract.image = croppedImage.g8_blackAndWhite()
-            tesseract.recognize
-            
-            print(tesseract.recognizedText!)
+        return croppedImage
+    }
+    
+    // *** Info extraction ***
+    func matches(for regex: String, in text: String) -> [String] {
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: text,
+                                        range: NSRange(text.startIndex..., in: text))
+            return results.map {
+                String(text[Range($0.range, in: text)!])
+            }
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    private func extractDate(str: String) -> [String] {
+        // "yyyy-MM-dd"
+        let regex1 = "[1-9][0-9][0-9][0-9]((\\s)*)-((\\s)*)((01)|(02)|(03)|(04)|(05)|(06)|(07)|(08)|(09)|(10)|(11)|(12))((\\s)*)-((\\s)*)[0-3][0-9]"
+        // "MM-dd-yyyy"
+        let regex2 = "((01)|(02)|(03)|(04)|(05)|(06)|(07)|(08)|(09)|(10)|(11)|(12))((\\s)*)-((\\s)*)[0-3][0-9]((\\s)*)-((\\s)*)[1-9][0-9][0-9][0-9]"
+        // "yyyy/MM/dd"
+        let regex3 = "[1-9][0-9][0-9][0-9]((\\s)*)\\/((\\s)*)((01)|(02)|(03)|(04)|(05)|(06)|(07)|(08)|(09)|(10)|(11)|(12))((\\s)*)\\/((\\s)*)[0-3][0-9]"
+        // "MM/dd/yyyy"
+        let regex4 = "((01)|(02)|(03)|(04)|(05)|(06)|(07)|(08)|(09)|(10)|(11)|(12))((\\s)*)\\/((\\s)*)[0-3][0-9]((\\s)*)\\/((\\s)*)[1-9][0-9][0-9][0-9]"
+        
+        let matched1 = matches(for: regex1, in: str)
+        if matched1.count > 0 {
+            return matched1
+        }
+        let matched2 = matches(for: regex2, in: str)
+        if matched2.count > 0 {
+            return matched2
+        }
+        let matched3 = matches(for: regex3, in: str)
+        if matched3.count > 0 {
+            return matched3
+        }
+        let matched4 = matches(for: regex4, in: str)
+        if matched4.count > 0 {
+            return matched4
         }
         
-        return croppedImage
+        return []
+    }
+    
+    func blackAndWhite(image: UIImage, completion: @escaping (UIImage?) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            // get information about image
+            
+            let imageref = image.cgImage!
+            let width = imageref.width
+            let height = imageref.height
+            
+            // create new bitmap context
+            
+            let bitsPerComponent = 8
+            let bytesPerPixel = 4
+            let bytesPerRow = width * bytesPerPixel
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            let bitmapInfo = Pixel.bitmapInfo
+            let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo)!
+            
+            // draw image to context
+            
+            let rect = CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height))
+            context.draw(imageref, in: rect)
+            
+            // manipulate binary data
+            
+            guard let buffer = context.data else {
+                print("unable to get context data")
+                completion(nil)
+                return
+            }
+            
+            let pixels = buffer.bindMemory(to: Pixel.self, capacity: width * height)
+            
+            DispatchQueue.concurrentPerform(iterations: height) { row in
+                for col in 0 ..< width {
+                    let offset = Int(row * width + col)
+                    
+                    let red = Float(pixels[offset].red)
+                    let green = Float(pixels[offset].green)
+                    let blue = Float(pixels[offset].blue)
+                    let alpha = pixels[offset].alpha
+                    let luminance = UInt8(0.2126 * red + 0.7152 * green + 0.0722 * blue)
+                    pixels[offset] = Pixel(red: luminance, green: luminance, blue: luminance, alpha: alpha)
+                }
+            }
+            
+            // return the image
+            
+            let outputImage = context.makeImage()!
+            completion(UIImage(cgImage: outputImage, scale: image.scale, orientation: image.imageOrientation))
+        }
+    }
+    
+    struct Pixel: Equatable {
+        private var rgba: UInt32
+        
+        var red: UInt8 {
+            return UInt8((rgba >> 24) & 255)
+        }
+        
+        var green: UInt8 {
+            return UInt8((rgba >> 16) & 255)
+        }
+        
+        var blue: UInt8 {
+            return UInt8((rgba >> 8) & 255)
+        }
+        
+        var alpha: UInt8 {
+            return UInt8((rgba >> 0) & 255)
+        }
+        
+        init(red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8) {
+            rgba = (UInt32(red) << 24) | (UInt32(green) << 16) | (UInt32(blue) << 8) | (UInt32(alpha) << 0)
+        }
+        
+        static let bitmapInfo = CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Little.rawValue
+        
+        static func ==(lhs: Pixel, rhs: Pixel) -> Bool {
+            return lhs.rgba == rhs.rgba
+        }
     }
 }
 

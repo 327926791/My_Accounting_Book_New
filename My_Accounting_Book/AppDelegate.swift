@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DropDown
 import RealmSwift
 
 @UIApplicationMain
@@ -42,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // will automatically perform the migration
         //let realm = try! Realm()*/
         
-        DropDown.startListeningToKeyboard()
         // Override point for customization after application launch.
         return true
     }

@@ -13,6 +13,7 @@
 		770AC2FC21AD928300799E23 /* FuzzySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2FB21AD928300799E23 /* FuzzySearch.swift */; };
 		770AC2FE21ADD22700799E23 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2FD21ADD22700799E23 /* Popover.swift */; };
 		7724D85821CDA98300D0305E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7724D85721CDA98300D0305E /* libz.tbd */; };
+		7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7791E5AF21D7EA1A00CCEC7B /* OpenCVWrapper.mm */; };
 		7793DEFA21AC4D78001A61EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DEF921AC4D78001A61EA /* AppDelegate.swift */; };
 		7793DEFC21AC4D78001A61EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DEFB21AC4D78001A61EA /* ViewController.swift */; };
 		7793DEFF21AC4D78001A61EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7793DEFD21AC4D78001A61EA /* Main.storyboard */; };
@@ -59,6 +60,9 @@
 		770AC2FB21AD928300799E23 /* FuzzySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzySearch.swift; sourceTree = "<group>"; };
 		770AC2FD21ADD22700799E23 /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		7724D85721CDA98300D0305E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		7791E5AD21D7EA1A00CCEC7B /* My_Accounting_Book-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My_Accounting_Book-Bridging-Header.h"; sourceTree = "<group>"; };
+		7791E5AE21D7EA1A00CCEC7B /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		7791E5AF21D7EA1A00CCEC7B /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
 		7793DEF621AC4D78001A61EA /* My_Accounting_Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = My_Accounting_Book.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7793DEF921AC4D78001A61EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7793DEFB21AC4D78001A61EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 		7793DEED21AC4D78001A61EA = {
 			isa = PBXGroup;
 			children = (
+				7791E5AE21D7EA1A00CCEC7B /* OpenCVWrapper.h */,
+				7791E5AF21D7EA1A00CCEC7B /* OpenCVWrapper.mm */,
 				770AC2F921AD04CC00799E23 /* places.txt */,
 				7793DEF821AC4D78001A61EA /* My_Accounting_Book */,
 				7793DF0D21AC4D79001A61EA /* My_Accounting_BookTests */,
@@ -118,6 +124,7 @@
 				7793DEF721AC4D78001A61EA /* Products */,
 				A3664E5D5C97A3DB72C69145 /* Frameworks */,
 				C991569CA1661DC1D0FD1CE9 /* Pods */,
+				7791E5AD21D7EA1A00CCEC7B /* My_Accounting_Book-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -289,6 +296,7 @@
 				TargetAttributes = {
 					7793DEF521AC4D78001A61EA = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 					7793DF0921AC4D79001A61EA = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -381,25 +389,29 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-My_Accounting_Book/Pods-My_Accounting_Book-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/DatePickerDialog/DatePickerDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/Dropper/Dropper.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
 				"${BUILT_PRODUCTS_DIR}/FuzzyMatchingSwift/FuzzyMatchingSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/LCUIComponents/LCUIComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DatePickerDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dropper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FuzzyMatchingSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LCUIComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDropDown.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -462,6 +474,7 @@
 				7793DEFA21AC4D78001A61EA /* AppDelegate.swift in Sources */,
 				770AC2FC21AD928300799E23 /* FuzzySearch.swift in Sources */,
 				770AC2F821AC704600799E23 /* MyExtensions.swift in Sources */,
+				7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */,
 				7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */,
 				770AC2F621AC5BBC00799E23 /* SuggestionTrie.swift in Sources */,
 				770AC2FE21ADD22700799E23 /* Popover.swift in Sources */,
@@ -640,6 +653,7 @@
 			baseConfigurationReference = 4B5C9735410835D5197814B3 /* Pods-My_Accounting_Book.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = My_Accounting_Book/Info.plist;
@@ -649,6 +663,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Team-927.My-Accounting-Book";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "My_Accounting_Book-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -659,6 +675,7 @@
 			baseConfigurationReference = 0DC5EB13372653D4D463487E /* Pods-My_Accounting_Book.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = My_Accounting_Book/Info.plist;
@@ -668,6 +685,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Team-927.My-Accounting-Book";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "My_Accounting_Book-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

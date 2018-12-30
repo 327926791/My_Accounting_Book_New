@@ -13,13 +13,19 @@ target 'My_Accounting_Book' do
   #platform :ios, '9.0'
   #use_frameworks!
 
-  pod 'LCUIComponents'
-
-  pod 'DropDown'
+  pod 'iOSDropDown'
 
   pod "FuzzyMatchingSwift"
 
   pod 'TesseractOCRiOS', :git => 'https://github.com/gali8/Tesseract-OCR-iOS.git'
+
+  pod 'OpenCV'
+
+  pod 'DatePickerDialog'
+
+  pod "SearchTextField"
+
+  pod "Dropper"
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
