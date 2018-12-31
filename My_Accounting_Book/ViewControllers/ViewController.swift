@@ -46,6 +46,7 @@ class ViewController: UIViewController, G8TesseractDelegate {
     
     // Account dropdown
     private var accountDropDown = DropDown()
+    
     // Category dropdown
     private var categoryDropDown = DropDown()
     
@@ -138,6 +139,7 @@ class ViewController: UIViewController, G8TesseractDelegate {
             setupAmountPopover(for: textField_CreateEntry_Amount)
         }
     }
+    
     @IBAction func textField_CreateEntry_Amount_EditingDidEnd(_ sender: Any) {
         if textField_CreateEntry_Amount.text == nil {
             amount_ = 0
@@ -253,6 +255,8 @@ class ViewController: UIViewController, G8TesseractDelegate {
     }
     @IBAction func textField_CreateEntry_Location_EditingDidEnd(_ sender: Any) {
     }
+        
+    
     
     @IBOutlet weak var datePicker_CreateEntry_DateTime: UIDatePicker!
     
@@ -330,4 +334,6 @@ class ViewController: UIViewController, G8TesseractDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+        
+    
 }
