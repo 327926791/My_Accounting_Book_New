@@ -22,10 +22,11 @@
 		7793DF0F21AC4D79001A61EA /* My_Accounting_BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DF0E21AC4D79001A61EA /* My_Accounting_BookTests.swift */; };
 		7793DF1A21AC4D79001A61EA /* My_Accounting_BookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DF1921AC4D79001A61EA /* My_Accounting_BookUITests.swift */; };
 		7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DF2821AC4E9C001A61EA /* Transaction.swift */; };
-		77B4CBCE21CD847C00BF2CC5 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 77B4CBCD21CD847C00BF2CC5 /* tessdata */; };
 		77C0DCF521CF0AD2007FBAC2 /* VisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0DCF421CF0AD2007FBAC2 /* VisionViewController.swift */; };
 		82BC780F17A3E09F58DAA0E3 /* Pods_My_Accounting_BookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F6DE661276E491526E9D82 /* Pods_My_Accounting_BookTests.framework */; };
 		C26B8DAC7A143FF2B8C650EA /* Pods_My_Accounting_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2F9B7C0E8A90B105541062 /* Pods_My_Accounting_Book.framework */; };
+		D3144A8D21D727890076ECC0 /* StartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3144A8C21D727890076ECC0 /* StartPageViewController.swift */; };
+		D3144A8F21D7AF8F0076ECC0 /* NavigationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */; };
 		EABCBAD7BD94301FA4D9396A /* Pods_My_Accounting_BookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4558AA07FF60F0EA1277C262 /* Pods_My_Accounting_BookUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,10 +78,11 @@
 		7793DF1921AC4D79001A61EA /* My_Accounting_BookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_Accounting_BookUITests.swift; sourceTree = "<group>"; };
 		7793DF1B21AC4D79001A61EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7793DF2821AC4E9C001A61EA /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		77B4CBCD21CD847C00BF2CC5 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = SOURCE_ROOT; };
 		77C0DCF421CF0AD2007FBAC2 /* VisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionViewController.swift; sourceTree = "<group>"; };
 		8FE67CBC01A64AE5C0902F6E /* Pods-My_Accounting_BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Accounting_BookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Accounting_BookTests/Pods-My_Accounting_BookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A143CDBD7341585A7D3DE6D7 /* Pods-My_Accounting_BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Accounting_BookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My_Accounting_BookTests/Pods-My_Accounting_BookTests.release.xcconfig"; sourceTree = "<group>"; };
+		D3144A8C21D727890076ECC0 /* StartPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageViewController.swift; sourceTree = "<group>"; };
+		D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +143,6 @@
 		7793DEF821AC4D78001A61EA /* My_Accounting_Book */ = {
 			isa = PBXGroup;
 			children = (
-				77B4CBCD21CD847C00BF2CC5 /* tessdata */,
 				7793DF2721AC4E82001A61EA /* Model */,
 				7793DF2A21AC4EBB001A61EA /* ViewControllers */,
 				77C0DCF321CF01E1007FBAC2 /* StoryBoards */,
@@ -187,7 +188,9 @@
 			isa = PBXGroup;
 			children = (
 				7793DEFB21AC4D78001A61EA /* ViewController.swift */,
+				D3144A8C21D727890076ECC0 /* StartPageViewController.swift */,
 				77C0DCF421CF0AD2007FBAC2 /* VisionViewController.swift */,
+				D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -335,7 +338,6 @@
 			files = (
 				770AC2FA21AD04CC00799E23 /* places.txt in Resources */,
 				7793DF0421AC4D79001A61EA /* LaunchScreen.storyboard in Resources */,
-				77B4CBCE21CD847C00BF2CC5 /* tessdata in Resources */,
 				7793DF0121AC4D79001A61EA /* Assets.xcassets in Resources */,
 				7793DEFF21AC4D78001A61EA /* Main.storyboard in Resources */,
 			);
@@ -390,6 +392,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-My_Accounting_Book/Pods-My_Accounting_Book-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DatePickerDialog/DatePickerDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/Dropper/Dropper.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
 				"${BUILT_PRODUCTS_DIR}/FuzzyMatchingSwift/FuzzyMatchingSwift.framework",
@@ -404,6 +407,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DatePickerDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dropper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FuzzyMatchingSwift.framework",
@@ -471,8 +475,10 @@
 			files = (
 				7793DEFC21AC4D78001A61EA /* ViewController.swift in Sources */,
 				77C0DCF521CF0AD2007FBAC2 /* VisionViewController.swift in Sources */,
+				D3144A8F21D7AF8F0076ECC0 /* NavigationPage.swift in Sources */,
 				7793DEFA21AC4D78001A61EA /* AppDelegate.swift in Sources */,
 				770AC2FC21AD928300799E23 /* FuzzySearch.swift in Sources */,
+				D3144A8D21D727890076ECC0 /* StartPageViewController.swift in Sources */,
 				770AC2F821AC704600799E23 /* MyExtensions.swift in Sources */,
 				7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */,
 				7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */,

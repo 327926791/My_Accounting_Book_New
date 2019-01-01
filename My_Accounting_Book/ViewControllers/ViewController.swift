@@ -122,13 +122,10 @@ class ViewController: UIViewController, G8TesseractDelegate {
                     switch action.style{
                     case .default:
                         print("default")
-                        
                     case .cancel:
                         print("cancel")
-                        
                     case .destructive:
                         print("destructive")
-                        
                         
                     }}))
                 self.present(alert, animated: true, completion: nil)
@@ -185,6 +182,8 @@ class ViewController: UIViewController, G8TesseractDelegate {
     }
     @IBAction func textField_CreateEntry_Location_EditingDidEnd(_ sender: Any) {
     }
+        
+    
     
     
     @IBAction func button_CreateEntry_SelectDate_TouchUpInside(_ sender: Any) {
@@ -266,4 +265,6 @@ class ViewController: UIViewController, G8TesseractDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+        
+    
 }
