@@ -20,7 +20,7 @@ class ViewController: UIViewController, G8TesseractDelegate {
     
     // Realm db
     private var realm = try! Realm(configuration: Realm.Configuration(
-        schemaVersion: 1
+        schemaVersion: 2
     ))
     
     // Outlets
@@ -48,6 +48,9 @@ class ViewController: UIViewController, G8TesseractDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //
+        RandomEntries.WeightedRandom()
         
         // Print realm db file path
         print(Realm.Configuration.defaultConfiguration.fileURL ?? "NA")
@@ -205,6 +208,7 @@ class ViewController: UIViewController, G8TesseractDelegate {
         t.location = textField_CreateEntry_Location.text
         t.dt = button_CreateEntry_SelectDate.title(for: .normal)
         t.text = textField_CreateEntry_Description.text
+        t.amountStr = String(amount_)
         
         segCtrl_CreateEntry_Type.selectedSegmentIndex = 0
         textField_CreateEntry_Amount.text = nil

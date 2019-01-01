@@ -31,4 +31,5 @@ class Transaction: Object {
     @objc dynamic var image1 : String?
     @objc dynamic var image2 : String?
     @objc dynamic var image3 : String?
+    @objc dynamic var amountStr : String = "0"
 }
