@@ -119,13 +119,10 @@ class ViewController: UIViewController, G8TesseractDelegate {
                     switch action.style{
                     case .default:
                         print("default")
-                        
                     case .cancel:
                         print("cancel")
-                        
                     case .destructive:
                         print("destructive")
-                        
                         
                     }}))
                 self.present(alert, animated: true, completion: nil)

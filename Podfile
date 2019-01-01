@@ -12,6 +12,8 @@ target 'My_Accounting_Book' do
   #source 'https://github.com/CocoaPods/Specs.git'
   #platform :ios, '9.0'
   #use_frameworks!
+  
+  pod 'DropDown'
 
   pod 'iOSDropDown'
 
