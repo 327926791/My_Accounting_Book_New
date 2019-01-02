@@ -15,7 +15,7 @@ class StartPageViewController: UIViewController {
     
     
     private var realm = try! Realm(configuration: Realm.Configuration(
-        schemaVersion: 1
+        schemaVersion: 2
     ))
     
     
@@ -25,6 +25,11 @@ class StartPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // *** Changes by Chi ****
+        let re = RandomEntries()
+        re.GenerateRandomEntries(realm: realm)
+        
         let ret = loadDisplay()
         
         updateLables(year:ret.year,month:ret.month)
@@ -108,6 +113,12 @@ class StartPageViewController: UIViewController {
         curDate_Month = curDateMonthFormatter.string(from: Date.init())
         
         //print ("\(curDate_Year)-\(curDate_Month)\n")
+        
+        // *** Changes by Chi ****
+        if Int(minDate_Year) == nil || Int(curDate_Year) == nil {
+            return ("2018", "12")
+        }
+        
         for i in Int(minDate_Year)! ... Int(curDate_Year)! {
             if i < Int(curDate_Year)! && i == Int(minDate_Year)! {
                 for j in Int(minDate_Month)! ... 12 {

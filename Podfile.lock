@@ -1,5 +1,6 @@
 PODS:
   - DatePickerDialog (2.0)
+  - DropDown (2.3.12)
   - Dropper (2.7.6)
   - Fuse (1.2.0)
   - FuzzyMatchingSwift (0.7.0)
@@ -15,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - DatePickerDialog
+  - DropDown
   - Dropper
   - Fuse
   - FuzzyMatchingSwift
@@ -27,6 +29,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - DatePickerDialog
+    - DropDown
     - Dropper
     - Fuse
     - FuzzyMatchingSwift
@@ -47,6 +50,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
+  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
   Dropper: 52a020beb6fef2e4b1d55447f17099e5776954ef
   Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
   FuzzyMatchingSwift: bcbeda92c3d16dc338b4bfa655d5848d66b884dd
@@ -57,6 +61,6 @@ SPEC CHECKSUMS:
   SearchTextField: a0992739d4b05dcbb40fb3a5cc6526bd991bdd23
   TesseractOCRiOS: 2c189465f86abb030d0c5141c90da9705b647854
 
-PODFILE CHECKSUM: 064e31d41eb88d3f3e5f4dd7a76340d2dd06c7ae
+PODFILE CHECKSUM: 3788a87dcd0fd2fded7dcff1a2c7ebe813c0bdc0
 
 COCOAPODS: 1.5.3

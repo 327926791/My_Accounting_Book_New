@@ -49,9 +49,6 @@ class ViewController: UIViewController, G8TesseractDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
-        RandomEntries.WeightedRandom()
-        
         // Print realm db file path
         print(Realm.Configuration.defaultConfiguration.fileURL ?? "NA")
         
