@@ -15,7 +15,7 @@ class StartPageViewController: UIViewController {
     
     
     private var realm = try! Realm(configuration: Realm.Configuration(
-        schemaVersion: 1
+        schemaVersion: 2
     ))
     
     

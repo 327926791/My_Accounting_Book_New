@@ -77,10 +77,30 @@ class ViewController: UIViewController, G8TesseractDelegate {
         self.button_CreateEntry_SelectDate.setTitle(formatter.string(from: Date()), for: .normal)
     }
     
+    func autoCompleteFromAmount(amountStr: String){
+        print(amountStr)
+        let amountArray = realm.objects(Transaction.self).filter("amountStr BEGINSWITH '\(amountStr)'").sorted(byKeyPath: "dt", ascending: false)
+        if amountArray.count != 0 {
+            print(amountArray[0].amount)
+            if (amountArray[0].type){
+                segCtrl_CreateEntry_Type.selectedSegmentIndex = 1
+            }
+            else {
+                segCtrl_CreateEntry_Type.selectedSegmentIndex = 0
+            }
+            textField_CreateEntry_Account.text = amountArray[0].account!
+            textField_CreateEntry_Category.text = amountArray[0].category!
+            textField_CreateEntry_Location.text = amountArray[0].location!
+            textField_CreateEntry_Description.text = amountArray[0].text!
+        }
+    }
+    
     
     @IBAction func textField_CreateEntry_Amount_EditingChanged(_ sender: Any) {
         // Give suggestions only if entered amount is valid double
         if let amount = Double(textField_CreateEntry_Amount.text!) {
+            let amountStr: String = textField_CreateEntry_Amount.text!
+            autoCompleteFromAmount(amountStr: amountStr)
             // Most recently used amount first
             let transactions = realm.objects(Transaction.self).filter("amount >= \(amount)").sorted(byKeyPath: "dt", ascending: false)
             var amountStrings = [String]()
