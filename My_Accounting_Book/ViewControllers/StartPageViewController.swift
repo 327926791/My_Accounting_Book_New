@@ -26,10 +26,6 @@ class StartPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // *** Changes by Chi ****
-        //let re = RandomEntries()
-        //re.GenerateRandomEntries(realm: realm)
-        
         let ret = loadDisplay()
         
         updateLables(year:ret.year,month:ret.month)
