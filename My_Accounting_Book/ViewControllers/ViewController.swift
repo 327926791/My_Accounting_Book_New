@@ -45,6 +45,7 @@ class ViewController: UIViewController, G8TesseractDelegate {
     @IBOutlet weak var button_CreateEntry_SelectDate: UIButton!
     @IBOutlet weak var textField_CreateEntry_Description: UITextField!
     @IBOutlet weak var button_CreateEntry_Create: UIButton!
+    @IBOutlet weak var button_CreateEntry_SaveAsTemplate: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,8 +200,6 @@ class ViewController: UIViewController, G8TesseractDelegate {
     }
     @IBAction func textField_CreateEntry_Location_EditingDidEnd(_ sender: Any) {
     }
-        
-    
     
     
     @IBAction func button_CreateEntry_SelectDate_TouchUpInside(_ sender: Any) {
@@ -278,10 +277,117 @@ class ViewController: UIViewController, G8TesseractDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    @IBAction func button_CreateEntry_SaveAsTemplate_TouchUpInside(_ sender: Any) {
+        var tempName : String?
+        
+        // Empty name alert
+        let emptyNameAlert = UIAlertController(title: "Error", message: "Please give the template a valid name.", preferredStyle: .alert)
+        emptyNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
+        
+        // Duplicate name alert
+        let duplicateNameAlert = UIAlertController(title: "Error", message: "A template with the same name already exists. Please give the new template a different name.", preferredStyle: .alert)
+        duplicateNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
+        
+        // Ask for template name and add template to db
+        showInputDialog(title: "Save as Template",
+                        subtitle: "Please give a name to the template:",
+                        actionTitle: "Add",
+                        cancelTitle: "Cancel",
+                        inputPlaceholder: nil,
+                        inputKeyboardType: .default)
+        { (input:String?) in
+            tempName = input
+            
+            let t = TransactionTemplate()
+            if tempName == nil || tempName!.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+                self.present(emptyNameAlert, animated: true, completion: nil)
+                return
+            }
+            let instances = self.realm.objects(TransactionTemplate.self).filter("name = '\(tempName!.trimmingCharacters(in: .whitespacesAndNewlines))'")
+            if instances.count > 0 {
+                self.present(duplicateNameAlert, animated: true, completion: nil)
+                return
+            }
+            t.name = tempName!
+            t.type = (self.segCtrl_CreateEntry_Type.selectedSegmentIndex == 0) ? EXPENSE : INCOME
+            t.amount = self.amount_
+            t.account = self.textField_CreateEntry_Account.text
+            t.category = self.textField_CreateEntry_Category.text
+            t.location = self.textField_CreateEntry_Location.text
+            t.text = self.textField_CreateEntry_Description.text
+            t.amountStr = String(self.amount_)
+            
+            do {
+                try
+                    self.realm.write {
+                        self.realm.add(t)
+                }
+            }
+            catch {
+                let alert = UIAlertController(title: "Error", message: "\(error) Please try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    switch action.style{
+                    case .default:
+                        print("default")
+                        
+                    case .cancel:
+                        print("cancel")
+                        
+                    case .destructive:
+                        print("destructive")
+                        
+                        
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            let successAlert = UIAlertController(title: "Success", message: "The template has been created.", preferredStyle: .alert)
+            successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    print("default")
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            self.present(successAlert, animated: true, completion: nil)
+        }
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-        
-    
 }

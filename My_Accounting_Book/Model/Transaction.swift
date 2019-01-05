@@ -35,6 +35,20 @@ class Transaction: Object {
     @objc dynamic var amountStr : String = "0"
 }
 
+class TransactionTemplate: Object {
+    @objc dynamic var name : String = ""
+    @objc dynamic var type : Bool = EXPENSE
+    @objc dynamic var amount : Double = 0
+    @objc dynamic var account : String?
+    @objc dynamic var category : String?
+    @objc dynamic var location : String?
+    @objc dynamic var text : String? // Text description
+    @objc dynamic var image1 : String?
+    @objc dynamic var image2 : String?
+    @objc dynamic var image3 : String?
+    @objc dynamic var amountStr : String = "0"
+}
+
 class RandomEntries {
     // Food and Drink
     private var foodAmount: [String: [Double]] = [:]

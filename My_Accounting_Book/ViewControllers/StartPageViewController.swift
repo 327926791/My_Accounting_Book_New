@@ -27,8 +27,8 @@ class StartPageViewController: UIViewController {
         super.viewDidLoad()
         
         // *** Changes by Chi ****
-        let re = RandomEntries()
-        re.GenerateRandomEntries(realm: realm)
+        //let re = RandomEntries()
+        //re.GenerateRandomEntries(realm: realm)
         
         let ret = loadDisplay()
         
