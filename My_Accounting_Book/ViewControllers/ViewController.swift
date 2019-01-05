@@ -87,7 +87,12 @@ class ViewController: UIViewController, G8TesseractDelegate {
             }
             textField_CreateEntry_Account.text = amountArray[0].account!
             textField_CreateEntry_Category.text = amountArray[0].category!
-            textField_CreateEntry_Location.text = amountArray[0].location!
+            if (amountArray[0].location != nil){
+                textField_CreateEntry_Location.text = amountArray[0].location!
+            }
+            else {
+                textField_CreateEntry_Location.text = ""
+            }
             if (amountArray[0].text != nil){
                 textField_CreateEntry_Description.text = amountArray[0].text!
             }
