@@ -12,35 +12,24 @@ import FuzzyMatchingSwift
 import TesseractOCR
 import DatePickerDialog
 import SearchTextField
-import iOSDropDown
+import DropDown
 import Dropper
 
-class ViewController: UIViewController, G8TesseractDelegate {
-    private var amount_: Double = 0
-    
+class ViewController: UIViewController {
     // Realm db
     private var realm = try! Realm(configuration: Realm.Configuration(
         schemaVersion: 2
     ))
     
+    // Dropdown lists for account and category
+    private var accountDropDown = DropDown()
+    private var categoryDropDown = DropDown()
+    
     // Outlets
     @IBOutlet weak var segCtrl_CreateEntry_Type: UISegmentedControl!
     @IBOutlet weak var textField_CreateEntry_Amount: SearchTextField!
-    @IBOutlet weak var textField_CreateEntry_Account: DropDown!
-    let accountDropper = Dropper(width: 190, height: 200)
     @IBOutlet weak var button_CreateEntry_Account: UIButton!
-    @IBAction func AccountDropdown(_ sender: Any) {
-        if accountDropper.status == Dropper.Status.hidden {
-            accountDropper.items = accounts
-            accountDropper.theme = Dropper.Themes.white
-            accountDropper.delegate = self
-            accountDropper.cornerRadius = 3
-            accountDropper.showWithAnimation(0.15, options: Dropper.Alignment.center, button: button_CreateEntry_Account)
-        } else {
-            accountDropper.hideWithAnimation(0.1)
-        }
-    }
-    @IBOutlet weak var textField_CreateEntry_Category: DropDown!
+    @IBOutlet weak var button_CreateEntry_Category: UIButton!
     @IBOutlet weak var textField_CreateEntry_Location: SearchTextField!
     @IBOutlet weak var button_CreateEntry_SelectDate: UIButton!
     @IBOutlet weak var textField_CreateEntry_Description: UITextField!
@@ -53,28 +42,29 @@ class ViewController: UIViewController, G8TesseractDelegate {
         // Print realm db file path
         print(Realm.Configuration.defaultConfiguration.fileURL ?? "NA")
         
-        // Selection dropdown lists for account and category
-        textField_CreateEntry_Account.text = accounts[0]
-        textField_CreateEntry_Account.optionArray = accounts
-        textField_CreateEntry_Account.didSelect{(selectedText, index, id) in
-            self.textField_CreateEntry_Account.text = selectedText
+        // Dropdown lists for account and category
+        accountDropDown.anchorView = button_CreateEntry_Account
+        accountDropDown.direction = .bottom
+        accountDropDown.dataSource = accounts
+        accountDropDown.selectionAction = { [unowned self] (index: Int, item: String) in if self.accountDropDown.selectedItem != nil {
+            self.button_CreateEntry_Account.setTitle(self.accountDropDown.selectedItem!, for: UIControl.State.normal)
+            }
         }
-        textField_CreateEntry_Category.text = categories[0]
-        textField_CreateEntry_Category.optionArray = categories
-        textField_CreateEntry_Category.didSelect{(selectedText, index, id) in
-            self.textField_CreateEntry_Category.text = selectedText
+        categoryDropDown.anchorView = button_CreateEntry_Category
+        categoryDropDown.direction = .bottom
+        categoryDropDown.dataSource = categories
+        categoryDropDown.selectionAction = { [unowned self] (index: Int, item: String) in if self.categoryDropDown.selectedItem != nil {
+            self.button_CreateEntry_Category.setTitle(self.categoryDropDown.selectedItem!, for: UIControl.State.normal)
+            }
         }
         
-        // Suggestion dropdown lists for amount and location
-        textField_CreateEntry_Amount.filterStrings(["Red", "Blue", "Yellow"])
-        textField_CreateEntry_Location.filterStrings(["Red", "Blue", "Yellow"])
-        
-        // Set default date to today
+        // Set initial date to today
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
-        self.button_CreateEntry_SelectDate.setTitle(formatter.string(from: Date()), for: .normal)
+        button_CreateEntry_SelectDate.setTitle(formatter.string(from: Date()), for: .normal)
     }
     
+    // *** CCW ***
     func autoCompleteFromAmount(amountStr: String){
         print(amountStr)
         let amountArray = realm.objects(Transaction.self).filter("amountStr BEGINSWITH '\(amountStr)'").sorted(byKeyPath: "dt", ascending: false)
@@ -86,8 +76,8 @@ class ViewController: UIViewController, G8TesseractDelegate {
             else {
                 segCtrl_CreateEntry_Type.selectedSegmentIndex = 0
             }
-            textField_CreateEntry_Account.text = amountArray[0].account!
-            textField_CreateEntry_Category.text = amountArray[0].category!
+            button_CreateEntry_Account.setTitle(amountArray[0].account!, for: .normal)
+            button_CreateEntry_Category.setTitle(amountArray[0].category!, for: .normal)
             if (amountArray[0].location != nil){
                 textField_CreateEntry_Location.text = amountArray[0].location!
             }
@@ -102,6 +92,16 @@ class ViewController: UIViewController, G8TesseractDelegate {
             }
             
             
+        }
+    }
+    
+    
+    @IBAction func TypeChanged(_ sender: Any) {
+        if segCtrl_CreateEntry_Type.selectedSegmentIndex == 0 {
+            categoryDropDown.dataSource = categories
+        }
+        else {
+            categoryDropDown.dataSource = incomeCategories
         }
     }
     
@@ -136,59 +136,24 @@ class ViewController: UIViewController, G8TesseractDelegate {
             return
         }
     }
-    // Validate entered amount
     @IBAction func textField_CreateEntry_Amount_EditingDidEnd(_ sender: Any) {
-        if textField_CreateEntry_Amount.text == nil {
-            amount_ = 0
-            textField_CreateEntry_Amount.text = "0"
-        }
-        else {
-            let test: Double? = Double(textField_CreateEntry_Amount.text!)
-            if test == nil {
-                amount_ = 0
-                textField_CreateEntry_Amount.text = "0"
-                let alert = UIAlertController(title: "Warning", message: "Entered amount is invalid.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                    switch action.style{
-                    case .default:
-                        print("default")
-                    case .cancel:
-                        print("cancel")
-                    case .destructive:
-                        print("destructive")
-                        
-                    }}))
-                self.present(alert, animated: true, completion: nil)
-            }
-            else if test! < 0 {
-                amount_ = 0
-                textField_CreateEntry_Amount.text = "0"
-                let alert = UIAlertController(title: "Warning", message: "The amount should be no less than than 0.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                    switch action.style{
-                    case .default:
-                        print("default")
-                        
-                    case .cancel:
-                        print("cancel")
-                        
-                    case .destructive:
-                        print("destructive")
-                        
-                        
-                    }}))
-                self.present(alert, animated: true, completion: nil)
-            }
-            else {
-                amount_ = test!
-            }
-        }
+    }
+    
+    
+    @IBAction func ShowAccounts(_ sender: Any) {
+        accountDropDown.show()
+    }
+    
+    
+    @IBAction func ShowCategories(_ sender: Any) {
+        categoryDropDown.show()
     }
     
     
     @IBAction func textField_CreateEntry_Locations_EditingChanged(_ sender: Any) {
         let location: String? = textField_CreateEntry_Location.text
         if (location != nil) {
+            // TODO: names with "'"
             let transactions = realm.objects(Transaction.self).filter("location BEGINSWITH[c] '\(location!)'").sorted(byKeyPath: "dt", ascending: false)
             var locationStrings = [String]()
             var count = 0
@@ -215,7 +180,7 @@ class ViewController: UIViewController, G8TesseractDelegate {
     
     
     @IBAction func button_CreateEntry_SelectDate_TouchUpInside(_ sender: Any) {
-        DatePickerDialog().show("Select Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
+        DatePickerDialog().show("Select Date", doneButtonTitle: "OK", cancelButtonTitle: "Cancel", datePickerMode: .date) {
             (date) -> Void in
             if let dt = date {
                 let formatter = DateFormatter()
@@ -228,24 +193,76 @@ class ViewController: UIViewController, G8TesseractDelegate {
     
     @IBAction func button_CreateEntry_Create_TouchUpInside(_ sender: Any) {
         let t = Transaction()
+        
+        // Validate amount
+        if textField_CreateEntry_Amount.text == nil {
+            let alert = UIAlertController(title: "Error", message: "Please enter the amount.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    print("default")
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        else {
+            let test: Double? = Double(textField_CreateEntry_Amount.text!)
+            if test == nil {
+                let alert = UIAlertController(title: "Error", message: "The amount is invalid.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    switch action.style{
+                    case .default:
+                        print("default")
+                        
+                    case .cancel:
+                        print("cancel")
+                        
+                    case .destructive:
+                        print("destructive")
+                        
+                        
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            else if test! < 0 {
+                let alert = UIAlertController(title: "Error", message: "The amount should be no less than than 0.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    switch action.style{
+                    case .default:
+                        print("default")
+                        
+                    case .cancel:
+                        print("cancel")
+                        
+                    case .destructive:
+                        print("destructive")
+                        
+                        
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            else {
+                t.amount = test!
+            }
+        }
+        
         t.type = (segCtrl_CreateEntry_Type.selectedSegmentIndex == 0) ? EXPENSE : INCOME
-        t.amount = amount_
-        t.account = textField_CreateEntry_Account.text
-        t.category = textField_CreateEntry_Category.text
+        t.account = button_CreateEntry_Account.title(for: .normal)
+        t.category = button_CreateEntry_Category.title(for: .normal)
         t.location = textField_CreateEntry_Location.text
         t.dt = button_CreateEntry_SelectDate.title(for: .normal)
         t.text = textField_CreateEntry_Description.text
-        t.amountStr = String(amount_)
-        
-        segCtrl_CreateEntry_Type.selectedSegmentIndex = 0
-        textField_CreateEntry_Amount.text = nil
-        textField_CreateEntry_Account.text = accounts[0]
-        textField_CreateEntry_Category.text = categories[0]
-        textField_CreateEntry_Location.text = nil
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy"
-        self.button_CreateEntry_SelectDate.setTitle(formatter.string(from: Date()), for: .normal)
-        textField_CreateEntry_Description.text = nil
+        t.amountStr = String(t.amount)
         
         do {
             try
@@ -291,7 +308,68 @@ class ViewController: UIViewController, G8TesseractDelegate {
     
     
     @IBAction func button_CreateEntry_SaveAsTemplate_TouchUpInside(_ sender: Any) {
-        var tempName : String?
+        // Validate amount
+        let amount_ : Double
+        if self.textField_CreateEntry_Amount.text == nil {
+            let alert = UIAlertController(title: "Error", message: "Please enter the amount.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    print("default")
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        else {
+            let test: Double? = Double(self.textField_CreateEntry_Amount.text!)
+            if test == nil {
+                let alert = UIAlertController(title: "Error", message: "The amount is invalid.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    switch action.style{
+                    case .default:
+                        print("default")
+                        
+                    case .cancel:
+                        print("cancel")
+                        
+                    case .destructive:
+                        print("destructive")
+                        
+                        
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            else if test! < 0 {
+                let alert = UIAlertController(title: "Error", message: "The amount should be no less than than 0.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    switch action.style{
+                    case .default:
+                        print("default")
+                        
+                    case .cancel:
+                        print("cancel")
+                        
+                    case .destructive:
+                        print("destructive")
+                        
+                        
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            else {
+                amount_ = test!
+            }
+        }
         
         // Empty name alert
         let emptyNameAlert = UIAlertController(title: "Error", message: "Please give the template a valid name.", preferredStyle: .alert)
@@ -333,9 +411,8 @@ class ViewController: UIViewController, G8TesseractDelegate {
                         inputPlaceholder: nil,
                         inputKeyboardType: .default)
         { (input:String?) in
-            tempName = input
-            
             let t = TransactionTemplate()
+            let tempName = input
             if tempName == nil || tempName!.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
                 self.present(emptyNameAlert, animated: true, completion: nil)
                 return
@@ -346,13 +423,13 @@ class ViewController: UIViewController, G8TesseractDelegate {
                 return
             }
             t.name = tempName!
+            t.amount = amount_
             t.type = (self.segCtrl_CreateEntry_Type.selectedSegmentIndex == 0) ? EXPENSE : INCOME
-            t.amount = self.amount_
-            t.account = self.textField_CreateEntry_Account.text
-            t.category = self.textField_CreateEntry_Category.text
+            t.account = self.button_CreateEntry_Account.title(for: .normal)
+            t.category = self.button_CreateEntry_Category.title(for: .normal)
             t.location = self.textField_CreateEntry_Location.text
             t.text = self.textField_CreateEntry_Description.text
-            t.amountStr = String(self.amount_)
+            t.amountStr = String(t.amount)
             
             do {
                 try
@@ -379,7 +456,7 @@ class ViewController: UIViewController, G8TesseractDelegate {
                 return
             }
             
-            let successAlert = UIAlertController(title: "Success", message: "The template has been created.", preferredStyle: .alert)
+            let successAlert = UIAlertController(title: "Success", message: "The template \"\(t.name)\" has been created.", preferredStyle: .alert)
             successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
                 case .default:
