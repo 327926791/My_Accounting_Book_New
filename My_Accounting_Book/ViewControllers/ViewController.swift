@@ -39,6 +39,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // create db entries
+        //let re = RandomEntries()
+        //re.GenerateRandomEntries(realm: realm)
+        
         // Print realm db file path
         print(Realm.Configuration.defaultConfiguration.fileURL ?? "NA")
         

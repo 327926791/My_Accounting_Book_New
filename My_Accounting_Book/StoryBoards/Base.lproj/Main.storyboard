@@ -668,7 +668,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Header" width="1181" height="1181"/>
+        <image name="Header" width="566.8800048828125" height="566.8800048828125"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZGK-sa-Vsg"/>
