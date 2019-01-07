@@ -595,7 +595,7 @@ class VisionViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         CATransaction.commit()
         print(text.count)
-        if let tesseract = G8Tesseract(language: "eng") {
+        if let tesseract = G8Tesseract(language: "receipt+eng") {
             tesseract.delegate = self
             for word in text {
                 //tesseract.image = cropImage(img: myImg, normalisedRect: normalise(box: word))!.g8_blackAndWhite()

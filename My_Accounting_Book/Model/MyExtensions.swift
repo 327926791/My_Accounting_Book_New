@@ -114,3 +114,115 @@ extension ViewController: DropperDelegate {
         self.button_CreateEntry_Account.setTitle(contents, for: .normal)
     }
 }
+
+extension Date
+{
+    static func from(year: Int, month: Int, day: Int) -> Date? {
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        return calendar.date(from: dateComponents) ?? nil
+    }
+    
+    static func to(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter.string(from: date)
+    }
+}
+
+// Random variables
+public extension Int {
+    
+    /// Returns a random Int point number between 0 and Int.max.
+    public static var random: Int {
+        return Int.random(n: Int.max)
+    }
+    
+    /// Random integer between 0 and n-1.
+    ///
+    /// - Parameter n:  Interval max
+    /// - Returns:      Returns a random Int point number between 0 and n max
+    public static func random(n: Int) -> Int {
+        return Int(arc4random_uniform(UInt32(n)))
+    }
+    
+    ///  Random integer between min and max
+    ///
+    /// - Parameters:
+    ///   - min:    Interval minimun
+    ///   - max:    Interval max
+    /// - Returns:  Returns a random Int point number between 0 and n max
+    public static func random(min: Int, max: Int) -> Int {
+        return Int.random(n: max - min + 1) + min
+        
+    }
+}
+
+public extension Double {
+    
+    /// Returns a random floating point number between 0.0 and 1.0, inclusive.
+    public static var random: Double {
+        return Double(arc4random()) / 0xFFFFFFFF
+    }
+    
+    /// Random double between 0 and n-1.
+    ///
+    /// - Parameter n:  Interval max
+    /// - Returns:      Returns a random double point number between 0 and n max
+    public static func random(min: Double, max: Double) -> Double {
+        return Double.random * (max - min) + min
+    }
+    
+    // Round up to 2 decimal places
+    public static func round2(input: Double) -> Double {
+        let output = Double(Int(input * 100)) / 100
+        return output
+    }
+}
+
+public extension Float {
+    
+    /// Returns a random floating point number between 0.0 and 1.0, inclusive.
+    public static var random: Float {
+        return Float(arc4random()) / 0xFFFFFFFF
+    }
+    
+    /// Random float between 0 and n-1.
+    ///
+    /// - Parameter n:  Interval max
+    /// - Returns:      Returns a random float point number between 0 and n max
+    public static func random(min: Float, max: Float) -> Float {
+        return Float.random * (max - min) + min
+    }
+}
+
+extension UIViewController {
+    func showInputDialog(title:String? = nil,
+                         subtitle:String? = nil,
+                         actionTitle:String? = "Add",
+                         cancelTitle:String? = "Cancel",
+                         inputPlaceholder:String? = nil,
+                         inputKeyboardType:UIKeyboardType = UIKeyboardType.default,
+                         cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
+                         actionHandler: ((_ text: String?) -> Void)? = nil) {
+        
+        let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
+        alert.addTextField { (textField:UITextField) in
+            textField.placeholder = inputPlaceholder
+            textField.keyboardType = inputKeyboardType
+        }
+        alert.addAction(UIAlertAction(title: actionTitle, style: .destructive, handler: { (action:UIAlertAction) in
+            guard let textField =  alert.textFields?.first else {
+                actionHandler?(nil)
+                return
+            }
+            actionHandler?(textField.text)
+        }))
+        alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+}
