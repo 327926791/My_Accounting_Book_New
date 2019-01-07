@@ -327,20 +327,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Unq-hI-gEQ">
-                                <rect key="frame" x="24" y="209" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button 1"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jn8-QL-Kc0">
-                                <rect key="frame" x="88" y="209" width="59" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button 2"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFi-Xp-P8S">
-                                <rect key="frame" x="153" y="209" width="59" height="30"/>
+                                <rect key="frame" x="292" y="209" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button 2"/>
+                                <state key="normal" title="Acount"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ili-5r-MzI">
                                 <rect key="frame" x="260" y="164" width="99" height="30"/>
@@ -415,11 +405,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eq-sf-0xa">
+                                <rect key="frame" x="16" y="200" width="97" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Categroy"/>
+                                <connections>
+                                    <action selector="pressCategoryFilterButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="Xeq-Og-UZs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jn8-QL-Kc0">
+                                <rect key="frame" x="133" y="209" width="108" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sort by"/>
+                                <connections>
+                                    <action selector="pressSortButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="6pD-xA-t3N"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="sry-9k-zuc"/>
                     </view>
                     <connections>
+                        <outlet property="categoryFilterButton" destination="4eq-sf-0xa" id="UNg-k0-SwN"/>
                         <outlet property="displayMonthDropDown" destination="k7D-lD-kVc" id="VsF-OH-rAT"/>
                         <outlet property="label11" destination="bMv-Js-ebT" id="BkQ-ik-GaD"/>
                         <outlet property="label12" destination="wkQ-2d-SYh" id="2TD-ON-35B"/>
@@ -429,6 +436,7 @@
                         <outlet property="label32" destination="DA7-K8-z11" id="Amv-lB-W6x"/>
                         <outlet property="monthlyExpense" destination="J07-mK-Wj6" id="oCA-Ar-JQd"/>
                         <outlet property="monthlyIncome" destination="X8J-St-Jo9" id="O8q-SA-pNI"/>
+                        <outlet property="sortButton" destination="jn8-QL-Kc0" id="2mr-PI-Vhb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qs7-gG-Yta" userLabel="First Responder" sceneMemberID="firstResponder"/>
