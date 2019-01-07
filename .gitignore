@@ -1019,3 +1019,21 @@ Pods/Target Support Files/SwiftEntryKit/SwiftEntryKit-prefix.pch
 Pods/Target Support Files/SwiftEntryKit/SwiftEntryKit-umbrella.h
 Pods/Target Support Files/SwiftEntryKit/SwiftEntryKit.modulemap
 Pods/Target Support Files/SwiftEntryKit/SwiftEntryKit.xcconfig
+Podfile.lock
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/DatePickerDialog.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/DropDown.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/Dropper.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/Fuse.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/FuzzyMatchingSwift.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/iOSDropDown.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/Pods-My_Accounting_Book.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/Pods-My_Accounting_BookTests.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/Pods-My_Accounting_BookUITests.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/QuickLayout.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/Realm.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/RealmSwift.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/SearchTextField.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/SwiftEntryKit.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/TesseractOCRiOS.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/mikesun.xcuserdatad/xcschemes/xcschememanagement.plist
+Podfile.lock

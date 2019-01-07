@@ -185,6 +185,11 @@
                                     <segue destination="Zzv-Ql-Wcs" kind="presentation" id="iOT-IG-Mmf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sna-CY-mPF">
+                                <rect key="frame" x="272" y="316" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -746,7 +751,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Header" width="1181" height="1181"/>
+        <image name="Header" width="566.8800048828125" height="566.8800048828125"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZGK-sa-Vsg"/>
