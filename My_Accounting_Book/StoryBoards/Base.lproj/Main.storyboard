@@ -166,22 +166,31 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6v-gI-Zbx">
-                                <rect key="frame" x="276" y="237" width="46" height="30"/>
+                                <rect key="frame" x="272" y="237" width="55" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="EditTest"/>
                                 <connections>
                                     <segue destination="2q5-kx-7qW" kind="presentation" id="VJn-Tq-rAJ"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Header" translatesAutoresizingMaskIntoConstraints="NO" id="VNb-qg-ay2">
-                                <rect key="frame" x="127" y="44" width="121" height="52"/>
+                                <rect key="frame" x="148" y="44" width="79" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VH-LP-3Fa">
+                                <rect key="frame" x="272" y="270" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="CreateTest"/>
+                                <connections>
+                                    <segue destination="Zzv-Ql-Wcs" kind="presentation" id="iOT-IG-Mmf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="buttonCreateTest" destination="5VH-LP-3Fa" id="Qca-za-VC2"/>
                         <outlet property="button_CreateEntry_Account" destination="44R-DA-ngs" id="4Lo-Cv-O9f"/>
                         <outlet property="button_CreateEntry_Category" destination="TkM-Ak-kzH" id="beW-AT-uLY"/>
                         <outlet property="button_CreateEntry_Create" destination="QHM-oY-Jvb" id="srf-s8-7FL"/>
@@ -254,15 +263,6 @@
                                     <action selector="LocationEditingEnd:" destination="2q5-kx-7qW" eventType="editingDidEnd" id="D7T-EU-JgB"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hs-uf-gQj">
-                                <rect key="frame" x="16" y="742" width="42" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="OCR"/>
-                                <connections>
-                                    <segue destination="mZD-Lg-Pzu" kind="presentation" id="7ge-Ah-IRp"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTK-kV-3fj">
                                 <rect key="frame" x="16" y="499" width="190" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -343,6 +343,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hs-uf-gQj">
+                                <rect key="frame" x="16" y="742" width="61" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="ChangeCanceled:" destination="2q5-kx-7qW" eventType="touchUpInside" id="ZoX-05-qzs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YEc-w4-GQv"/>
@@ -350,6 +359,7 @@
                     <connections>
                         <outlet property="accountButton" destination="l0A-eS-uo3" id="OO6-qz-Jdi"/>
                         <outlet property="amountTextField" destination="0EB-a8-2ep" id="ula-D8-bfl"/>
+                        <outlet property="cancelButton" destination="4hs-uf-gQj" id="nZp-Sl-74B"/>
                         <outlet property="categoryButton" destination="oGa-sp-U0W" id="Ag8-Ff-fr8"/>
                         <outlet property="confirmButton" destination="pDF-ob-Oma" id="ket-b9-ltP"/>
                         <outlet property="dateButton" destination="yTK-kV-3fj" id="XEw-p3-0bb"/>
@@ -361,6 +371,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2wC-HR-bju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2128.8000000000002" y="53.940886699507388"/>
+        </scene>
+        <!--Create Entry Using Template View Controller-->
+        <scene sceneID="rrs-21-ruX">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Zzv-Ql-Wcs" customClass="CreateEntryUsingTemplateViewController" customModule="My_Accounting_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ojo-Ub-xsH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r6G-kJ-S1I">
+                                <rect key="frame" x="33" y="310" width="308" height="192"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7q8-Vi-Jrh">
+                                        <rect key="frame" x="241" y="143" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Create"/>
+                                        <connections>
+                                            <action selector="Create:" destination="Zzv-Ql-Wcs" eventType="touchUpInside" id="KpF-Tn-i1K"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6e-7j-WNx">
+                                        <rect key="frame" x="20" y="143" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="Cancel:" destination="Zzv-Ql-Wcs" eventType="touchUpInside" id="if2-2l-UiG"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create an Entry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3o-Io-FU3">
+                                        <rect key="frame" x="87" y="26" width="134" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Enter the name of the template." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zX2-ZC-jQw" customClass="SearchTextField" customModule="SearchTextField">
+                                        <rect key="frame" x="14" y="81" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <attributedString key="attributedText"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="TextChanged:" destination="Zzv-Ql-Wcs" eventType="editingChanged" id="t2j-Pv-oNi"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.80199163732394363" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5ge-4L-8Fj"/>
+                    </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="zX2-ZC-jQw" id="Re2-sz-xs7"/>
+                        <outlet property="popUpView" destination="r6G-kJ-S1I" id="yYy-fz-0Cf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tEj-7L-B5U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688.8" y="771.42857142857144"/>
         </scene>
         <!--recipt_recognize-->
         <scene sceneID="dhr-fo-UQi">
@@ -668,7 +738,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Header" width="566.8800048828125" height="566.8800048828125"/>
+        <image name="Header" width="1181" height="1181"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZGK-sa-Vsg"/>

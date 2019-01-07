@@ -13,6 +13,7 @@
 		770AC2FC21AD928300799E23 /* FuzzySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2FB21AD928300799E23 /* FuzzySearch.swift */; };
 		770AC2FE21ADD22700799E23 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2FD21ADD22700799E23 /* Popover.swift */; };
 		7724D85821CDA98300D0305E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7724D85721CDA98300D0305E /* libz.tbd */; };
+		77519E6921E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */; };
 		7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7791E5AF21D7EA1A00CCEC7B /* OpenCVWrapper.mm */; };
 		7793DEFA21AC4D78001A61EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DEF921AC4D78001A61EA /* AppDelegate.swift */; };
 		7793DEFC21AC4D78001A61EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DEFB21AC4D78001A61EA /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		770AC2FB21AD928300799E23 /* FuzzySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzySearch.swift; sourceTree = "<group>"; };
 		770AC2FD21ADD22700799E23 /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		7724D85721CDA98300D0305E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEntryUsingTemplateViewController.swift; sourceTree = "<group>"; };
 		7791E5AD21D7EA1A00CCEC7B /* My_Accounting_Book-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My_Accounting_Book-Bridging-Header.h"; sourceTree = "<group>"; };
 		7791E5AE21D7EA1A00CCEC7B /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
 		7791E5AF21D7EA1A00CCEC7B /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				77C0DCF421CF0AD2007FBAC2 /* VisionViewController.swift */,
 				D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */,
 				77FD594021E1C87E00FA01B1 /* EditEntryViewController.swift */,
+				77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -399,9 +402,11 @@
 				"${BUILT_PRODUCTS_DIR}/Dropper/Dropper.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
 				"${BUILT_PRODUCTS_DIR}/FuzzyMatchingSwift/FuzzyMatchingSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 				"${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework",
 			);
@@ -414,9 +419,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dropper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FuzzyMatchingSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDropDown.framework",
 			);
@@ -486,6 +493,7 @@
 				77FD594121E1C87E00FA01B1 /* EditEntryViewController.swift in Sources */,
 				7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */,
 				7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */,
+				77519E6921E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift in Sources */,
 				770AC2F621AC5BBC00799E23 /* SuggestionTrie.swift in Sources */,
 				770AC2FE21ADD22700799E23 /* Popover.swift in Sources */,
 			);

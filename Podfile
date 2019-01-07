@@ -29,6 +29,10 @@ target 'My_Accounting_Book' do
 
   pod "Dropper"
 
+  pod 'SwiftEntryKit', '0.8.7'
+
+  pod 'QuickLayout', '2.1.1'
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|

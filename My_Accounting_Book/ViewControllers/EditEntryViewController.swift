@@ -14,6 +14,7 @@ import DatePickerDialog
 import SearchTextField
 import DropDown
 import Dropper
+import SwiftEntryKit
 
 // Entry to be edited
 var transactionToBeEdited: Transaction = Transaction()
@@ -37,6 +38,7 @@ class EditEntryViewController: UIViewController {
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -277,28 +279,33 @@ class EditEntryViewController: UIViewController {
             return
         }
         
-        let alert = UIAlertController(title: "Success", message: "The entry has been updated.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            switch action.style{
-            case .default:
-                print("default")
-                
-            case .cancel:
-                print("cancel")
-                
-            case .destructive:
-                print("destructive")
-                
-                
-            }}))
-        self.present(alert, animated: true, completion: nil)
+        // Success message
+        ShowSuccessMessage(text: "The entry has been updated.")
+        self.dismiss(animated: true, completion: nil)
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func ChangeCanceled(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    private func ShowSuccessMessage(text: String) {
+        var attributes = EKAttributes.topFloat
+        attributes.entryBackground = .gradient(gradient: .init(colors: [.blue, .lightGray], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.statusBar = .dark
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: 300), height: .intrinsic)
+        
+        let title = EKProperty.LabelContent(text: "Success", style: .init(font: UIFont (name: "HelveticaNeue-Light", size: 20)!, color: UIColor.yellow))
+        let description = EKProperty.LabelContent(text: text, style: .init(font: UIFont (name: "HelveticaNeue-Light", size: 15)!, color: UIColor.yellow))
+        let image = EKProperty.ImageContent(image: UIImage(named: "Header")!, size: CGSize(width: 35, height: 35))
+        let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
 }
-
-
