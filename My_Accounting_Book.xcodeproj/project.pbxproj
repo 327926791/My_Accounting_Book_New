@@ -13,6 +13,7 @@
 		770AC2FC21AD928300799E23 /* FuzzySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2FB21AD928300799E23 /* FuzzySearch.swift */; };
 		770AC2FE21ADD22700799E23 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2FD21ADD22700799E23 /* Popover.swift */; };
 		7724D85821CDA98300D0305E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7724D85721CDA98300D0305E /* libz.tbd */; };
+		77519E6921E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */; };
 		7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7791E5AF21D7EA1A00CCEC7B /* OpenCVWrapper.mm */; };
 		7793DEFA21AC4D78001A61EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DEF921AC4D78001A61EA /* AppDelegate.swift */; };
 		7793DEFC21AC4D78001A61EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DEFB21AC4D78001A61EA /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 		7793DF1A21AC4D79001A61EA /* My_Accounting_BookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DF1921AC4D79001A61EA /* My_Accounting_BookUITests.swift */; };
 		7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793DF2821AC4E9C001A61EA /* Transaction.swift */; };
 		77C0DCF521CF0AD2007FBAC2 /* VisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C0DCF421CF0AD2007FBAC2 /* VisionViewController.swift */; };
+		77FD594121E1C87E00FA01B1 /* EditEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FD594021E1C87E00FA01B1 /* EditEntryViewController.swift */; };
 		82BC780F17A3E09F58DAA0E3 /* Pods_My_Accounting_BookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F6DE661276E491526E9D82 /* Pods_My_Accounting_BookTests.framework */; };
 		C26B8DAC7A143FF2B8C650EA /* Pods_My_Accounting_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2F9B7C0E8A90B105541062 /* Pods_My_Accounting_Book.framework */; };
 		D3144A8D21D727890076ECC0 /* StartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3144A8C21D727890076ECC0 /* StartPageViewController.swift */; };
@@ -61,6 +63,7 @@
 		770AC2FB21AD928300799E23 /* FuzzySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzySearch.swift; sourceTree = "<group>"; };
 		770AC2FD21ADD22700799E23 /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		7724D85721CDA98300D0305E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEntryUsingTemplateViewController.swift; sourceTree = "<group>"; };
 		7791E5AD21D7EA1A00CCEC7B /* My_Accounting_Book-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My_Accounting_Book-Bridging-Header.h"; sourceTree = "<group>"; };
 		7791E5AE21D7EA1A00CCEC7B /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
 		7791E5AF21D7EA1A00CCEC7B /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		7793DF1B21AC4D79001A61EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7793DF2821AC4E9C001A61EA /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		77C0DCF421CF0AD2007FBAC2 /* VisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionViewController.swift; sourceTree = "<group>"; };
+		77FD594021E1C87E00FA01B1 /* EditEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryViewController.swift; sourceTree = "<group>"; };
 		8FE67CBC01A64AE5C0902F6E /* Pods-My_Accounting_BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Accounting_BookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Accounting_BookTests/Pods-My_Accounting_BookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A143CDBD7341585A7D3DE6D7 /* Pods-My_Accounting_BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Accounting_BookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My_Accounting_BookTests/Pods-My_Accounting_BookTests.release.xcconfig"; sourceTree = "<group>"; };
 		D3144A8C21D727890076ECC0 /* StartPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 				D3144A8C21D727890076ECC0 /* StartPageViewController.swift */,
 				77C0DCF421CF0AD2007FBAC2 /* VisionViewController.swift */,
 				D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */,
+				77FD594021E1C87E00FA01B1 /* EditEntryViewController.swift */,
+				77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -396,9 +402,11 @@
 				"${BUILT_PRODUCTS_DIR}/Dropper/Dropper.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
 				"${BUILT_PRODUCTS_DIR}/FuzzyMatchingSwift/FuzzyMatchingSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 				"${BUILT_PRODUCTS_DIR}/TransitionableTab/TransitionableTab.framework",
 				"${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework",
@@ -412,9 +420,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dropper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FuzzyMatchingSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionableTab.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDropDown.framework",
@@ -482,8 +492,10 @@
 				770AC2FC21AD928300799E23 /* FuzzySearch.swift in Sources */,
 				D3144A8D21D727890076ECC0 /* StartPageViewController.swift in Sources */,
 				770AC2F821AC704600799E23 /* MyExtensions.swift in Sources */,
+				77FD594121E1C87E00FA01B1 /* EditEntryViewController.swift in Sources */,
 				7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */,
 				7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */,
+				77519E6921E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift in Sources */,
 				770AC2F621AC5BBC00799E23 /* SuggestionTrie.swift in Sources */,
 				770AC2FE21ADD22700799E23 /* Popover.swift in Sources */,
 			);
