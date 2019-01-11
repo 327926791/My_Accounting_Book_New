@@ -10,7 +10,26 @@ import UIKit
 import RealmSwift
 import DropDown
 
-class StartPageViewController: UIViewController {
+class StartPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var transcriptTalbeView: UITableView!
+    var label1Array : [String] = [String]()
+    var label2Array : [String] = [String]()
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return label1Array.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTranscriptCell", for: indexPath) as! TranscriptTableViewCell
+        cell.tableCellLabel1.text = label1Array[indexPath.row]
+        cell.tableCellLabel2.text = label2Array[indexPath.row]
+        
+        print(label1Array)
+        print(label2Array)
+        return cell
+    }
+    
     var DropdownButtonDisplay = [String]()
     
     
@@ -28,6 +47,11 @@ class StartPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        transcriptTalbeView.rowHeight = 120
+        transcriptTalbeView.allowsSelection = false
+        transcriptTalbeView.delegate = self
+        transcriptTalbeView.dataSource = self
+        transcriptTalbeView.register(UINib(nibName: "TranscriptTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTranscriptCell")
         
         let ret = loadDisplay()
         
@@ -81,11 +105,9 @@ class StartPageViewController: UIViewController {
             print("select" + self.MonthDropdown.selectedItem!)
             if let title = self.displayMonthDropDown.title(for: UIControl.State.normal){
                 var year : String
-                var month : String
-                year = title.substring(to: title.index(title.startIndex, offsetBy: 4))
-                let index1 = title.index(title.startIndex, offsetBy: 5)
-                let index2 = title.index(title.startIndex, offsetBy: 6)
-                month = String(title[index1 ... index2])
+                var month : String                
+                year = title.substring(toIndex: 4)
+                month = title.substring(fromIndex: 5)
                 print(year,month)
                 self.updateLables(year: year, month: month)
                 var categoryFilterQuery : String?
@@ -116,28 +138,11 @@ class StartPageViewController: UIViewController {
     @IBOutlet weak var monthlyExpense: UILabel!
     //generate date select dropdown list and return current year and month
     func loadDisplay() -> (year:String, month:String){
-        var minDate_Year : String
-        var minDate_Month : String
+        var minDate_Year : String = "9999"
+        var minDate_Month : String = "99"
         var curDate_Year : String
         var curDate_Month : String
-        var Date_Array = [String]()
-        let transactions = realm.objects(Transaction.self)
-        for item in transactions {
-            if let a = item.dt {
-                
-                if !Date_Array.contains(a){
-                    Date_Array.append(a)
-                }
-            }
-        }
-        Date_Array.sort()
-        //get earliest year and month
-        let min = Date_Array[0]
-        minDate_Year = min.substring(to: min.index(min.startIndex, offsetBy: 4))
-        let index1 = min.index(min.startIndex, offsetBy: 5)
-        let index2 = min.index(min.startIndex, offsetBy: 6)
-        minDate_Month = String(min[index1 ... index2])
-        //print ("\(minDate_Year)-\(minDate_Month)\n")
+        
         //get current year and month
         let curDateYearFormatter = DateFormatter.init()
         curDateYearFormatter.dateFormat = "yyyy"
@@ -146,10 +151,29 @@ class StartPageViewController: UIViewController {
         curDateMonthFormatter.dateFormat = "MM"
         curDate_Month = curDateMonthFormatter.string(from: Date.init())
         
-        //print ("\(curDate_Year)-\(curDate_Month)\n")
+        let transactions = realm.objects(Transaction.self)
+        if transactions.count == 0{
+            return (curDate_Year,curDate_Month)
+        }
+        
+        for item in transactions {
+            if let a = item.dt {
+                //get earliest year and month
+                let (year, month) = getYearandMonth(dt: a)
+                print (year+month)
+                if year+month < minDate_Year+minDate_Month{
+                    minDate_Year = year
+                    minDate_Month = month
+                }
+            }
+        }
+        
+        print ("mindate: \(minDate_Year)-\(minDate_Month)")
+        print ("curdate: \(curDate_Year)-\(curDate_Month)")
         
         // *** Changes by Chi ****
-        if Int(minDate_Year) == nil || Int(curDate_Year) == nil {
+        if Int(minDate_Year) == nil && Int(curDate_Year) == nil {
+            print ("cant get date")
             return ("2018", "12")
         }
         
@@ -191,14 +215,14 @@ class StartPageViewController: UIViewController {
         sum_income = 0.0
         
         let transactions = realm.objects(Transaction.self)
+        if transactions.count == 0{
+            return
+        }
         for item in transactions {
             let type = item.type
             let a = item.amount
             if let date = item.dt{
-                let itemYear = date.substring(to: date.index(date.startIndex, offsetBy: 4))
-                let index1 = date.index(date.startIndex, offsetBy: 5)
-                let index2 = date.index(date.startIndex, offsetBy: 6)
-                let itemMonth = String(date[index1 ... index2])
+                let (itemYear, itemMonth) = getYearandMonth(dt: date)
                 if itemYear == year && itemMonth == month {
                     if type == true {
                         sum_expense += a
@@ -231,10 +255,13 @@ class StartPageViewController: UIViewController {
             var year : String
             var month : String
             if let title = self.displayMonthDropDown.title(for: UIControl.State.normal){
-                year = title.substring(to: title.index(title.startIndex, offsetBy: 4))
+                /*year = title.substring(to: title.index(title.startIndex, offsetBy: 4))
                 let index1 = title.index(title.startIndex, offsetBy: 5)
                 let index2 = title.index(title.startIndex, offsetBy: 6)
                 month = String(title[index1 ... index2])
+                (year, month) = self.getYearandMonth(dt: title)*/
+                year = title.substring(toIndex: 4)
+                month = title.substring(fromIndex: 5)
                 var query : String
                 query = "category == \"\(self.categoryFilterDropdown.selectedItem!)\""
                 print (query)
@@ -253,11 +280,13 @@ class StartPageViewController: UIViewController {
             var year : String
             var month : String
             if let title = self.displayMonthDropDown.title(for: UIControl.State.normal){
-                year = title.substring(to: title.index(title.startIndex, offsetBy: 4))
-                let index1 = title.index(title.startIndex, offsetBy: 5)
-                let index2 = title.index(title.startIndex, offsetBy: 6)
-                month = String(title[index1 ... index2])
-                self.displayTransactions(filterCondition: "category == \"\(self.categoryFilterDropdown.selectedItem!)\"", sortCondition: self.sortDropdown.selectedItem, year: year, month: month)
+                year = title.substring(toIndex: 4)
+                month = title.substring(fromIndex: 5)
+                if self.categoryFilterDropdown.selectedItem != nil{
+                    self.displayTransactions(filterCondition: "category == \"\(self.categoryFilterDropdown.selectedItem!)\"", sortCondition: self.sortDropdown.selectedItem, year: year, month: month)}
+                else{
+                    self.displayTransactions(filterCondition: nil, sortCondition: self.sortDropdown.selectedItem, year: year, month: month)
+                }
                 //"category == " + self.categoryFilterDropdown.selectedItem!
             }
             }
@@ -273,6 +302,8 @@ class StartPageViewController: UIViewController {
     @IBOutlet weak var label32: UILabel!
     
     func displayTransactions ( filterCondition : String?, sortCondition : String?, year : String, month : String) {
+        label1Array.removeAll()
+        label2Array.removeAll()
         var label1 : String
         var label2 : String
         var sort_Condition : String
@@ -282,13 +313,6 @@ class StartPageViewController: UIViewController {
         var count : Int
         count = 0
         let transactions : Results<Transaction>
-        
-        label11.text = ""
-        label12.text = ""
-        label21.text = ""
-        label22.text = ""
-        label31.text = ""
-        label32.text = ""
         
         switch (sortCondition){
         case "date down":
@@ -322,21 +346,23 @@ class StartPageViewController: UIViewController {
         
         for item in transactions {
             
-            if var dt = item.dt{
-                dt = dt.substring(to: dt.index(dt.startIndex, offsetBy: 10))
-                let itemYear = dt.substring(to: dt.index(dt.startIndex, offsetBy: 4))
-                let index1 = dt.index(dt.startIndex, offsetBy: 5)
-                let index2 = dt.index(dt.startIndex, offsetBy: 6)
-                let itemMonth = String(dt[index1 ... index2])
+            if let dt = item.dt{
+                let (itemYear, itemMonth) = getYearandMonth(dt: dt)
                 if itemYear == year && itemMonth == month {
                     count = count + 1
-                    label1 = dt + "\n"                    
+                    label1 = dt + "\n"
+                    if item.type == true{
+                        label1 = label1 + "expense\n"
+                    }else{
+                        label1 = label1 + "income\n"
+                    }
                     if let cate = item.category{
                         label1 = label1 + cate
                     }
                     if let loc = item.location{
                         label1 = label1 + "@" + loc
                     }
+
                     if let acnt = item.account{
                         label2 = acnt + "\n"
                     }else{
@@ -344,20 +370,13 @@ class StartPageViewController: UIViewController {
                     }
                     let amt = item.amount
                     label2 = label2 + String(amt)
-                    if count == 1{
-                        label11.text = label1
-                        label12.text = label2
-                    }else if count == 2{
-                        label21.text = label1
-                        label22.text = label2
-                    }else if count == 3{
-                        label31.text = label1
-                        label32.text = label2
-                    }
+                    self.label1Array.append(label1)
+                    self.label2Array.append(label2)
                 }
             }
 
         }
+        self.transcriptTalbeView.reloadData()
     }
 
     /*
@@ -369,5 +388,14 @@ class StartPageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func getYearandMonth (dt : String) -> (year : String, month : String){
+        //print(dt)
+        let year = dt.substring(fromIndex: 6)
+        let month = dt.substring(toIndex: 2)
+        //let year = sub_string.substring(fromIndex: 3)
+        //print ("\(year) - \(month)")
+
+        return (year, month)
+    }
 
 }
