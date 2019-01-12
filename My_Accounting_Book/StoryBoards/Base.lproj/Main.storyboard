@@ -561,9 +561,35 @@
                                 <rect key="frame" x="1" y="89" width="375" height="690"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFi-Xp-P8S">
-                                        <rect key="frame" x="274" y="131" width="49" height="30"/>
+                                        <rect key="frame" x="222" y="146" width="90" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Acount"/>
+                                        <connections>
+                                            <action selector="pressAccountFilterButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="y9g-VU-i9W"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eq-sf-0xa">
+                                        <rect key="frame" x="16" y="146" width="127" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Categroy">
+                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressCategoryFilterButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="Xeq-Og-UZs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jn8-QL-Kc0">
+                                        <rect key="frame" x="143" y="146" width="79" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.90035394662957735" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Sort by">
+                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressSortButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="6pD-xA-t3N"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7D-lD-kVc">
                                         <rect key="frame" x="16" y="0.0" width="162" height="37"/>
@@ -605,6 +631,22 @@
                                         <rect key="frame" x="16" y="185" width="343" height="445"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKV-9E-aQ2">
+                                        <rect key="frame" x="318" y="131" width="35" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Filter"/>
+                                        <connections>
+                                            <action selector="pressFilterButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="LG5-h8-rDE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN7-y3-QZ4">
+                                        <rect key="frame" x="318" y="157" width="36" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Clear"/>
+                                        <connections>
+                                            <action selector="pressClearButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="rOh-Am-iDj"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -616,22 +658,6 @@
                                     <constraint firstItem="OeY-CZ-BGi" firstAttribute="top" secondItem="3Y8-zd-XYH" secondAttribute="top" constant="185" id="zJg-nV-G6I"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eq-sf-0xa">
-                                <rect key="frame" x="16" y="200" width="97" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Categroy"/>
-                                <connections>
-                                    <action selector="pressCategoryFilterButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="Xeq-Og-UZs"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jn8-QL-Kc0">
-                                <rect key="frame" x="133" y="209" width="108" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sort by"/>
-                                <connections>
-                                    <action selector="pressSortButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="6pD-xA-t3N"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -644,8 +670,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="overview" id="00N-q4-Bn9"/>
                     <connections>
+                        <outlet property="accountFilterButton" destination="UFi-Xp-P8S" id="Md0-HG-U8m"/>
                         <outlet property="categoryFilterButton" destination="4eq-sf-0xa" id="UNg-k0-SwN"/>
+                        <outlet property="clearButton" destination="vN7-y3-QZ4" id="pO6-Ac-heU"/>
                         <outlet property="displayMonthDropDown" destination="k7D-lD-kVc" id="VsF-OH-rAT"/>
+                        <outlet property="filterButton" destination="xKV-9E-aQ2" id="J3t-0K-owt"/>
                         <outlet property="monthlyExpense" destination="J07-mK-Wj6" id="oCA-Ar-JQd"/>
                         <outlet property="monthlyIncome" destination="X8J-St-Jo9" id="O8q-SA-pNI"/>
                         <outlet property="sortButton" destination="jn8-QL-Kc0" id="2mr-PI-Vhb"/>

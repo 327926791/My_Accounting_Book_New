@@ -40,6 +40,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     
     private var MonthDropdown = DropDown()
     private var categoryFilterDropdown = DropDown()
+    private var accountFilterDropdown = DropDown()
     private var sortDropdown = DropDown()
     var sortChoice = ["date up", "date down", "amount up", "amount down"]
     
@@ -59,7 +60,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         //print("\(ret.year) \(ret.month)")
         displayMonthDropDown.setTitle("\(ret.year)-\(ret.month)", for: UIControl.State.normal)
         
-        displayTransactions(filterCondition: nil, sortCondition: nil, year: ret.year, month: ret.month)
+        displayTransactions()
         
         MonthDropdown.anchorView = displayMonthDropDown
         MonthDropdown.direction = .bottom
@@ -76,7 +77,18 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             print("category filter dropdown init select nil")
         }
         categoryFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.categoryFilterDropdown.selectedItem != nil {
-            self.categoryFilterButton.setTitle("filter by", for: UIControl.State.normal)
+            self.categoryFilterButton.setTitle("category", for: UIControl.State.normal)
+            }
+        }
+        
+        accountFilterDropdown.anchorView = accountFilterButton
+        accountFilterDropdown.direction = .bottom
+        accountFilterDropdown.dataSource = accounts
+        if accountFilterDropdown.selectedItem == nil{
+            print("account filter dropdown init select nil")
+        }
+        accountFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.accountFilterDropdown.selectedItem != nil {
+            self.accountFilterButton.setTitle("account", for: UIControl.State.normal)
             }
         }
         
@@ -123,7 +135,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
                 }else{
                     sortQuery = nil
                 }
-                self.displayTransactions(filterCondition: categoryFilterQuery, sortCondition: sortQuery, year: year, month: month)
+                self.displayTransactions()
                 
             }
             
@@ -176,7 +188,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             print ("cant get date")
             return ("2018", "12")
         }
-        
+        /////////////////////
         for i in Int(minDate_Year)! ... Int(curDate_Year)! {
             if i < Int(curDate_Year)! && i == Int(minDate_Year)! {
                 for j in Int(minDate_Month)! ... 12 {
@@ -240,33 +252,21 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-
-
-//    @IBOutlet weak var categoryFilterButton: UIButton!
     @IBOutlet weak var sortButton: UIButton!
-    
+    @IBOutlet weak var accountFilterButton: UIButton!
     @IBOutlet weak var categoryFilterButton: UIButton!
+    
+    @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    
+
+    
+    
     
     @IBAction func pressCategoryFilterButton(_ sender: Any) {
         categoryFilterDropdown.show()
         categoryFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.categoryFilterDropdown.selectedItem != nil {
             self.categoryFilterButton.setTitle(self.categoryFilterDropdown.selectedItem!, for: UIControl.State.normal)
-            print("select filter " + self.categoryFilterDropdown.selectedItem!)
-            var year : String
-            var month : String
-            if let title = self.displayMonthDropDown.title(for: UIControl.State.normal){
-                /*year = title.substring(to: title.index(title.startIndex, offsetBy: 4))
-                let index1 = title.index(title.startIndex, offsetBy: 5)
-                let index2 = title.index(title.startIndex, offsetBy: 6)
-                month = String(title[index1 ... index2])
-                (year, month) = self.getYearandMonth(dt: title)*/
-                year = title.substring(toIndex: 4)
-                month = title.substring(fromIndex: 5)
-                var query : String
-                query = "category == \"\(self.categoryFilterDropdown.selectedItem!)\""
-                print (query)
-                self.displayTransactions(filterCondition: query, sortCondition: self.sortDropdown.selectedItem, year: year, month: month)
-            }
             }
         }
     }
@@ -276,32 +276,40 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         sortDropdown.show()
         sortDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.sortDropdown.selectedItem != nil {
             self.sortButton.setTitle(self.sortDropdown.selectedItem!, for: UIControl.State.normal)
-            print("select sort " + self.sortDropdown.selectedItem!)
-            var year : String
-            var month : String
-            if let title = self.displayMonthDropDown.title(for: UIControl.State.normal){
-                year = title.substring(toIndex: 4)
-                month = title.substring(fromIndex: 5)
-                if self.categoryFilterDropdown.selectedItem != nil{
-                    self.displayTransactions(filterCondition: "category == \"\(self.categoryFilterDropdown.selectedItem!)\"", sortCondition: self.sortDropdown.selectedItem, year: year, month: month)}
-                else{
-                    self.displayTransactions(filterCondition: nil, sortCondition: self.sortDropdown.selectedItem, year: year, month: month)
-                }
-                //"category == " + self.categoryFilterDropdown.selectedItem!
-            }
             }
         }
     }
     
     
-    @IBOutlet weak var label11: UILabel!
-    @IBOutlet weak var label12: UILabel!
-    @IBOutlet weak var label21: UILabel!
-    @IBOutlet weak var label22: UILabel!
-    @IBOutlet weak var label31: UILabel!
-    @IBOutlet weak var label32: UILabel!
+    @IBAction func pressAccountFilterButton(_ sender: Any) {
+        accountFilterDropdown.show()
+        accountFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.accountFilterDropdown.selectedItem != nil {
+            self.accountFilterButton.setTitle(self.accountFilterDropdown.selectedItem!, for: UIControl.State.normal)
+            }
+        }
+    }
     
-    func displayTransactions ( filterCondition : String?, sortCondition : String?, year : String, month : String) {
+    @IBAction func pressFilterButton(_ sender: Any) {
+        displayTransactions ()
+    }
+    
+    @IBAction func pressClearButton(_ sender: Any) {
+        accountFilterDropdown.clearSelection()
+        accountFilterButton.setTitle("account", for: UIControl.State.normal)
+        categoryFilterDropdown.clearSelection()
+        categoryFilterButton.setTitle("category", for: UIControl.State.normal)
+        sortDropdown.clearSelection()
+        sortButton.setTitle("sort by", for: UIControl.State.normal)
+    }
+    
+    
+    
+    ////////////////////////
+    
+    func displayTransactions () {
+        var sortCondition : String = ""
+        var query : String
+        
         label1Array.removeAll()
         label2Array.removeAll()
         var label1 : String
@@ -310,10 +318,22 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         var ascending_OrNot : Bool
         label1 = ""
         label2 = ""
-        var count : Int
-        count = 0
-        let transactions : Results<Transaction>
         
+        var year : String
+        var month : String
+        if let title = self.displayMonthDropDown.title(for: UIControl.State.normal){
+            year = title.substring(toIndex: 4)
+            month = title.substring(fromIndex: 5)
+        }else{
+            (year, month) = loadDisplay()
+        }
+        
+        var transactions : Results<Transaction>
+        
+        if sortDropdown.selectedItem != nil{
+            sortCondition = sortDropdown.selectedItem!
+        }
+        print(sortCondition)
         switch (sortCondition){
         case "date down":
             sort_Condition = "dt"
@@ -337,19 +357,26 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             break
         }
         
-        if filterCondition == nil {
+        if categoryFilterDropdown.selectedItem == nil && accountFilterDropdown.selectedItem == nil{
             transactions = realm.objects(Transaction.self).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+        }else if categoryFilterDropdown.selectedItem != nil && accountFilterDropdown.selectedItem == nil{
+            query = "category = \"\(categoryFilterDropdown.selectedItem!)\""
+            transactions = realm.objects(Transaction.self).filter(query).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+        }else if categoryFilterDropdown.selectedItem == nil && accountFilterDropdown.selectedItem != nil{
+            query = "account = \"\(accountFilterDropdown.selectedItem!)\""
+            transactions = realm.objects(Transaction.self).filter(query).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+        }else if categoryFilterDropdown.selectedItem != nil && accountFilterDropdown.selectedItem != nil{
+            query = "category = \"\(categoryFilterDropdown.selectedItem!)\" && account = \"\(accountFilterDropdown.selectedItem!)\""
+            transactions = realm.objects(Transaction.self).filter(query).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
         }else{
-            print (filterCondition!)
-            transactions = realm.objects(Transaction.self).filter(filterCondition!).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+            print("no match case")
+            transactions = realm.objects(Transaction.self)
         }
         
         for item in transactions {
-            
             if let dt = item.dt{
                 let (itemYear, itemMonth) = getYearandMonth(dt: dt)
                 if itemYear == year && itemMonth == month {
-                    count = count + 1
                     label1 = dt + "\n"
                     if item.type == true{
                         label1 = label1 + "expense\n"
