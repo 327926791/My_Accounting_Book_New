@@ -13,6 +13,11 @@ import RealmSwift
 let EXPENSE = true
 let INCOME = false
 
+var userDefaultAccounts: [String] = Array()
+var userDefaultCategories: [String] = Array()
+var userDefaultIncomeCategories: [String] = Array()
+
+
 // Accounts
 var accounts: [String] = ["Cash", "Debit Card", "Credit Card"]
 

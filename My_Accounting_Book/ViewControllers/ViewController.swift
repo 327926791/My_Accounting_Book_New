@@ -46,6 +46,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
+        
+        
         // create db entries
         //let re = RandomEntries()
         //re.GenerateRandomEntries(realm: realm)
