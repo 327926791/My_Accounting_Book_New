@@ -63,8 +63,8 @@ class CSVViewController: UIViewController {
         }
         for row in data{
             
-            let categoryIndexForThisRow = userDefaultCategories.firstIndex(of: row.category!)
-            let accountIndexForThisRow = userDefaultAccounts.firstIndex(of: row.account!)
+            let categoryIndexForThisRow = categories.firstIndex(of: row.category!)
+            let accountIndexForThisRow = accounts.firstIndex(of: row.account!)
             if categoryIndexForThisRow != nil && accountIndexForThisRow != nil{
                 if ( allCategorySelectedFlag == true || categorySelectionIndexTracker.contains(categoryIndexForThisRow!+1) ) &&
                     accountSelectionIndexTracker.contains(accountIndexForThisRow!) &&
@@ -135,14 +135,14 @@ class CSVViewController: UIViewController {
         endDate = todayDate
         
         var prependArray = ["\(ALLCATEGORIES)"]
-        prependArray.append(contentsOf: userDefaultCategories)
+        prependArray.append(contentsOf: categories)
         items.append([String]())
         items[0].append("\(STARTDATE): \(todayDate)")
         items[0].append("\(ENDDATE): \(todayDate)")
         items.append([String]())
         items[1].append(contentsOf: prependArray)
         items.append([String]())
-        items[2].append(contentsOf: userDefaultAccounts)
+        items[2].append(contentsOf: accounts)
         
     }
     

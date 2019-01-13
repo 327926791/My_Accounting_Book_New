@@ -49,11 +49,11 @@ class CategoryAccountManagementViewController: UIViewController {
                 return
             }
             if self.targetFlag == targetFlagEnum.Category{
-                userDefaultCategories.append(trimmedString)
-                UserDefaults.standard.set(userDefaultCategories, forKey: "categories")
+                categories.append(trimmedString)
+                UserDefaults.standard.set(categories, forKey: "categories")
             }else{
-                userDefaultAccounts.append(trimmedString)
-                UserDefaults.standard.set(userDefaultAccounts, forKey: "accounts")
+                accounts.append(trimmedString)
+                UserDefaults.standard.set(accounts, forKey: "accounts")
             }
             
             self.tableView.reloadData()
@@ -81,9 +81,9 @@ class CategoryAccountManagementViewController: UIViewController {
         var textField = UITextField()
         var entryToRename: String = ""
         if targetFlag == targetFlagEnum.Category{
-            entryToRename = userDefaultCategories[selectionIndexTracker[0]]
+            entryToRename = categories[selectionIndexTracker[0]]
         }else{
-            entryToRename = userDefaultAccounts[selectionIndexTracker[0]]
+            entryToRename = accounts[selectionIndexTracker[0]]
         }
         
         let alert = UIAlertController(title: "Rename \(entryToRename)", message: "", preferredStyle: .alert)
@@ -99,11 +99,11 @@ class CategoryAccountManagementViewController: UIViewController {
                 return
             }
             if self.targetFlag == targetFlagEnum.Category{
-                userDefaultCategories[self.selectionIndexTracker[0]] = trimmedString
-                UserDefaults.standard.set(userDefaultCategories, forKey: "categories")
+                categories[self.selectionIndexTracker[0]] = trimmedString
+                UserDefaults.standard.set(categories, forKey: "categories")
             }else{
-                userDefaultAccounts[self.selectionIndexTracker[0]] = trimmedString
-                UserDefaults.standard.set(userDefaultAccounts, forKey: "accounts")
+                accounts[self.selectionIndexTracker[0]] = trimmedString
+                UserDefaults.standard.set(accounts, forKey: "accounts")
             }
             
             // clears checkmark
@@ -149,8 +149,8 @@ class CategoryAccountManagementViewController: UIViewController {
     @IBAction func deleteButtonPressed(_ sender: Any) {
         
 
-        if (targetFlag == targetFlagEnum.Category && userDefaultCategories.count == 0) ||
-            (targetFlag == targetFlagEnum.Account && userDefaultAccounts.count == 0){
+        if (targetFlag == targetFlagEnum.Category && categories.count == 0) ||
+            (targetFlag == targetFlagEnum.Account && accounts.count == 0){
             let alert = UIAlertController(title: "Error", message: "No Entries To Delete.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             }))
@@ -174,16 +174,16 @@ class CategoryAccountManagementViewController: UIViewController {
         
         for index in selectionIndexTracker{
             if targetFlag == targetFlagEnum.Category{
-                userDefaultCategories.remove(at: index)
+                categories.remove(at: index)
             }else{
-                userDefaultAccounts.remove(at: index)
+                accounts.remove(at: index)
             }
         }
         
         if targetFlag == targetFlagEnum.Category{
-            UserDefaults.standard.set(userDefaultCategories, forKey: "categories")
+            UserDefaults.standard.set(categories, forKey: "categories")
         }else{
-            UserDefaults.standard.set(userDefaultAccounts, forKey: "accounts")
+            UserDefaults.standard.set(accounts, forKey: "accounts")
         }
         
         selectionIndexTracker.removeAll()
@@ -259,9 +259,9 @@ extension CategoryAccountManagementViewController: UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if targetFlag == targetFlagEnum.Category{
-            return userDefaultCategories.count
+            return categories.count
         }else{
-            return userDefaultAccounts.count
+            return accounts.count
         }
     }
    
@@ -273,9 +273,9 @@ extension CategoryAccountManagementViewController: UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         if targetFlag == targetFlagEnum.Category{
-            cell.textLabel?.text = userDefaultCategories[indexPath.row]
+            cell.textLabel?.text = categories[indexPath.row]
         }else{
-            cell.textLabel?.text = userDefaultAccounts[indexPath.row]
+            cell.textLabel?.text = accounts[indexPath.row]
         }
         
         // this avoids checkmark carry over when switching between Category and Account
