@@ -15,6 +15,8 @@ target 'My_Accounting_Book' do
   
   pod 'DropDown'
 
+  pod 'SideMenu'
+
   pod 'iOSDropDown'
 
   pod "FuzzyMatchingSwift"

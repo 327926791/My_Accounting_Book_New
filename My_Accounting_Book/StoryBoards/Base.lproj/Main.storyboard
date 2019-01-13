@@ -474,7 +474,7 @@
                                                 <rect key="frame" x="22.333333333333329" y="0.0" width="51" height="31"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwc-12-C6M">
-                                                <rect key="frame" x="28.666666666666657" y="31" width="36.333333333333343" height="20.333333333333329"/>
+                                                <rect key="frame" x="28.666666666666661" y="31" width="36.333333333333343" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.99404761900000005" green="0.9880952381" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -488,7 +488,7 @@
                                                 <rect key="frame" x="22.333333333333343" y="0.0" width="51" height="31"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cj-HA-wFa">
-                                                <rect key="frame" x="30.666666666666686" y="31" width="32.333333333333343" height="20.333333333333329"/>
+                                                <rect key="frame" x="30.666666666666689" y="31" width="32.333333333333343" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.99404761900000005" green="0.9880952381" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -561,7 +561,7 @@
                                 <rect key="frame" x="1" y="89" width="375" height="690"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFi-Xp-P8S">
-                                        <rect key="frame" x="222" y="146" width="90" height="31"/>
+                                        <rect key="frame" x="243" y="146" width="69" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Acount"/>
@@ -569,19 +569,8 @@
                                             <action selector="pressAccountFilterButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="y9g-VU-i9W"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eq-sf-0xa">
-                                        <rect key="frame" x="16" y="146" width="127" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Categroy">
-                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressCategoryFilterButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="Xeq-Og-UZs"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jn8-QL-Kc0">
-                                        <rect key="frame" x="143" y="146" width="79" height="31"/>
+                                        <rect key="frame" x="164" y="146" width="79" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.90035394662957735" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Sort by">
@@ -647,11 +636,38 @@
                                             <action selector="pressClearButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="rOh-Am-iDj"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ox9-4q-FkW">
+                                        <rect key="frame" x="16" y="650" width="71" height="30"/>
+                                        <state key="normal" title="side menu"/>
+                                        <connections>
+                                            <segue destination="EMP-Sj-nWG" kind="presentation" id="ahO-CD-TlN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cc-kY-cdD">
+                                        <rect key="frame" x="16" y="146" width="52" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="type"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eq-sf-0xa">
+                                        <rect key="frame" x="67" y="146" width="98" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Categroy">
+                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressCategoryFilterButton:" destination="Bff-WD-uFs" eventType="touchUpInside" id="Xeq-Og-UZs"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ox9-4q-FkW" secondAttribute="bottom" constant="10" id="5n9-6v-Q35"/>
                                     <constraint firstAttribute="trailing" secondItem="OeY-CZ-BGi" secondAttribute="trailing" constant="16" id="GeQ-eU-MkV"/>
                                     <constraint firstItem="aN3-S4-YPp" firstAttribute="top" secondItem="OeY-CZ-BGi" secondAttribute="bottom" constant="20" id="LmM-lh-6Px"/>
+                                    <constraint firstItem="ox9-4q-FkW" firstAttribute="leading" secondItem="3Y8-zd-XYH" secondAttribute="leading" constant="16" id="WQz-EE-abe"/>
+                                    <constraint firstItem="ox9-4q-FkW" firstAttribute="top" secondItem="OeY-CZ-BGi" secondAttribute="bottom" constant="20" id="We6-iK-nnH"/>
                                     <constraint firstAttribute="bottom" secondItem="aN3-S4-YPp" secondAttribute="bottom" constant="10" id="otz-S4-egg"/>
                                     <constraint firstItem="OeY-CZ-BGi" firstAttribute="leading" secondItem="3Y8-zd-XYH" secondAttribute="leading" constant="16" id="uWB-Bs-p0H"/>
                                     <constraint firstAttribute="trailing" secondItem="aN3-S4-YPp" secondAttribute="trailing" constant="10" id="ysf-ki-Pg5"/>
@@ -703,18 +719,59 @@
             </objects>
             <point key="canvasLocation" x="1751.2" y="37.684729064039409"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="tb4-b4-6vc">
+        <!--Side Menu View Controller-->
+        <scene sceneID="EEk-l9-C2T">
             <objects>
-                <viewController id="wAx-7E-KpG" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oE9-0W-gOC">
+                <viewController id="Ozo-Y8-y5T" customClass="SideMenuViewController" customModule="My_Accounting_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hpK-lR-L5e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SideMenu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDJ-ui-viZ">
+                                <rect key="frame" x="27" y="104" width="230" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFN-aE-RJc">
+                                <rect key="frame" x="16" y="165" width="151" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="clear database"/>
+                                <connections>
+                                    <action selector="pressClearDatabaseButton:" destination="Ozo-Y8-y5T" eventType="touchUpInside" id="L5w-Ym-zId"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="SSj-yY-8CD"/>
                     </view>
+                    <navigationItem key="navigationItem" id="H46-yl-hml"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qTR-Ax-Iug" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="64R-RH-CLx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3597.5999999999999" y="-706.4039408866995"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="Qlu-t3-Ria">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EMP-Sj-nWG" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EW4-y0-pf0">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="Ozo-Y8-y5T" kind="relationship" relationship="rootViewController" id="lPe-sI-YaU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QYz-3i-meR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2694" y="-705"/>
         </scene>
     </scenes>
     <resources>

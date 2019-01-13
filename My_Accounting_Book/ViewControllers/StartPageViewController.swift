@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import DropDown
+import SideMenu
 
 class StartPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -24,9 +25,6 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTranscriptCell", for: indexPath) as! TranscriptTableViewCell
         cell.tableCellLabel1.text = label1Array[indexPath.row]
         cell.tableCellLabel2.text = label2Array[indexPath.row]
-        
-        print(label1Array)
-        print(label2Array)
         return cell
     }
     
@@ -44,10 +42,13 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     private var sortDropdown = DropDown()
     var sortChoice = ["date up", "date down", "amount up", "amount down"]
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: SideMenuViewController())
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        
         transcriptTalbeView.rowHeight = 120
         transcriptTalbeView.allowsSelection = false
         transcriptTalbeView.delegate = self
@@ -66,7 +67,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         MonthDropdown.direction = .bottom
         MonthDropdown.dataSource = DropdownButtonDisplay
         MonthDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.MonthDropdown.selectedItem != nil {
-                self.displayMonthDropDown.setTitle(self.MonthDropdown.selectedItem!, for: UIControl.State.normal)
+            self.displayMonthDropDown.setTitle(self.MonthDropdown.selectedItem!, for: UIControl.State.normal)
             }
         }
         
@@ -74,7 +75,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         categoryFilterDropdown.direction = .bottom
         categoryFilterDropdown.dataSource = categories
         if categoryFilterDropdown.selectedItem == nil{
-            print("category filter dropdown init select nil")
+           // print("category filter dropdown init select nil")
         }
         categoryFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.categoryFilterDropdown.selectedItem != nil {
             self.categoryFilterButton.setTitle("category", for: UIControl.State.normal)
@@ -85,7 +86,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         accountFilterDropdown.direction = .bottom
         accountFilterDropdown.dataSource = accounts
         if accountFilterDropdown.selectedItem == nil{
-            print("account filter dropdown init select nil")
+            //print("account filter dropdown init select nil")
         }
         accountFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.accountFilterDropdown.selectedItem != nil {
             self.accountFilterButton.setTitle("account", for: UIControl.State.normal)
@@ -96,17 +97,34 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         sortDropdown.direction = .bottom
         sortDropdown.dataSource = sortChoice
         if sortDropdown.selectedItem == nil{
-            print("sort dropdown init select nil")
+            //print("sort dropdown init select nil")
         }
         sortDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.sortDropdown.selectedItem != nil {
             self.sortButton.setTitle("sort by", for: UIControl.State.normal)
             }
         }
-        
-        
         // Do any additional setup after loading the view.
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
+        super.viewDidAppear(animated)
+        let ret = loadDisplay()
+        if let selection = displayMonthDropDown.title(for: UIControl.State.normal) {
+            let year = selection.substring(toIndex: 4)
+            let month = selection.substring(fromIndex: 5)
+            print ("get title: \(year)-\(month)")
+            updateLables(year:year,month:month)
+            displayMonthDropDown.setTitle("\(year)-\(month)", for: UIControl.State.normal)
+        }else{
+            updateLables(year:ret.year,month:ret.month)
+            displayMonthDropDown.setTitle("\(ret.year)-\(ret.month)", for: UIControl.State.normal)
+        }
+
+        displayTransactions()
+        
+    }
     
     //press select month button
     @IBOutlet weak var displayMonthDropDown: UIButton!
@@ -114,13 +132,13 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         MonthDropdown.show()
         MonthDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.MonthDropdown.selectedItem != nil {
             self.displayMonthDropDown.setTitle(self.MonthDropdown.selectedItem!, for: UIControl.State.normal)
-            print("select" + self.MonthDropdown.selectedItem!)
+            //print("select" + self.MonthDropdown.selectedItem!)
             if let title = self.displayMonthDropDown.title(for: UIControl.State.normal){
                 var year : String
                 var month : String                
                 year = title.substring(toIndex: 4)
                 month = title.substring(fromIndex: 5)
-                print(year,month)
+                //print(year,month)
                 self.updateLables(year: year, month: month)
                 var categoryFilterQuery : String?
                 var sortQuery : String?
@@ -141,15 +159,13 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             
             }
         }
-        
-            
-        
     }
     
     @IBOutlet weak var monthlyIncome: UILabel!
     @IBOutlet weak var monthlyExpense: UILabel!
     //generate date select dropdown list and return current year and month
     func loadDisplay() -> (year:String, month:String){
+        DropdownButtonDisplay.removeAll()
         var minDate_Year : String = "9999"
         var minDate_Month : String = "99"
         var curDate_Year : String
@@ -172,7 +188,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             if let a = item.dt {
                 //get earliest year and month
                 let (year, month) = getYearandMonth(dt: a)
-                print (year+month)
+                //print (year+month)
                 if year+month < minDate_Year+minDate_Month{
                     minDate_Year = year
                     minDate_Month = month
@@ -180,8 +196,8 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
-        print ("mindate: \(minDate_Year)-\(minDate_Month)")
-        print ("curdate: \(curDate_Year)-\(curDate_Month)")
+        //print ("mindate: \(minDate_Year)-\(minDate_Month)")
+       // print ("curdate: \(curDate_Year)-\(curDate_Month)")
         
         // *** Changes by Chi ****
         if Int(minDate_Year) == nil && Int(curDate_Year) == nil {
@@ -221,6 +237,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     //update monthly income and expense labels
     func updateLables(year : String, month : String){
+        print("pass in \(year)-\(month)")
         var sum_expense : Double
         var sum_income : Double
         sum_expense = 0.0
@@ -244,24 +261,15 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
-        
         monthlyIncome.text = "Monthly Income: \(sum_income)"
         monthlyExpense.text = "Monthly Expense: \(sum_expense)"
-    
-       
     }
-    
     
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var accountFilterButton: UIButton!
     @IBOutlet weak var categoryFilterButton: UIButton!
-    
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
-    
-
-    
-    
     
     @IBAction func pressCategoryFilterButton(_ sender: Any) {
         categoryFilterDropdown.show()
@@ -406,6 +414,9 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         self.transcriptTalbeView.reloadData()
     }
 
+    /*@IBAction func pressSideMenuButton(_ sender: Any) {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }*/
     /*
     // MARK: - Navigation
 
