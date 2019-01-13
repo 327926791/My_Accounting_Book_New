@@ -31,6 +31,7 @@
 		D3144A8F21D7AF8F0076ECC0 /* NavigationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */; };
 		D3A01A7F21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A01A7D21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift */; };
 		D3A01A8021E7F9F600DDCFD4 /* TranscriptTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A01A7E21E7F9F600DDCFD4 /* TranscriptTableViewCell.xib */; };
+		D3F87CDA21EA792200FE4A6F /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F87CD921EA792200FE4A6F /* SideMenuViewController.swift */; };
 		EABCBAD7BD94301FA4D9396A /* Pods_My_Accounting_BookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4558AA07FF60F0EA1277C262 /* Pods_My_Accounting_BookUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPage.swift; sourceTree = "<group>"; };
 		D3A01A7D21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptTableViewCell.swift; sourceTree = "<group>"; };
 		D3A01A7E21E7F9F600DDCFD4 /* TranscriptTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TranscriptTableViewCell.xib; sourceTree = "<group>"; };
+		D3F87CD921EA792200FE4A6F /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */,
 				77FD594021E1C87E00FA01B1 /* EditEntryViewController.swift */,
 				77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */,
+				D3F87CD921EA792200FE4A6F /* SideMenuViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 				"${BUILT_PRODUCTS_DIR}/TransitionableTab/TransitionableTab.framework",
@@ -439,6 +443,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionableTab.framework",
@@ -513,6 +518,7 @@
 				7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */,
 				77519E6921E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift in Sources */,
 				770AC2F621AC5BBC00799E23 /* SuggestionTrie.swift in Sources */,
+				D3F87CDA21EA792200FE4A6F /* SideMenuViewController.swift in Sources */,
 				770AC2FE21ADD22700799E23 /* Popover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
