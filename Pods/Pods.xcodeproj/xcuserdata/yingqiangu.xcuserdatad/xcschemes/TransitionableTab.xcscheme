@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "73F4FA9E36CCA977E1A35DFC3037C220"
+               BlueprintIdentifier = "3E7E27DE249432D1A8AC245B0AB65BE7"
                BlueprintName = "TransitionableTab"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "TransitionableTab.framework">
