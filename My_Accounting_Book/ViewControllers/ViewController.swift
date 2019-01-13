@@ -46,32 +46,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        /*
-         Check if first launch
-         first launch:      store defaults categories and accounts to UserDefaults
-         not first launch:  read categories and accounts from UserDefaults
-         */
-        
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if launchedBefore  {
-            // not first launch
-            accounts = UserDefaults.standard.stringArray(forKey: "accounts") ?? [String]()
-            categories = UserDefaults.standard.stringArray(forKey: "categories") ?? [String]()
-            incomeCategories = UserDefaults.standard.stringArray(forKey: "incomeCategories") ?? [String]()
-        } else {
-            // first launch
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-            accounts = ["Cash", "Debit Card", "Credit Card"]
-            categories = ["Food and Drink", "Apparel", "Rent", "Loan and Mortgage", "Bill", "Transportation", "Travelling", "Entertainment", "Health and Fitness", "Education", "Grocery", "Shopping", "Gift", "Online Shopping", "Other"]
-            incomeCategories = ["Salary and Wage", "Business Profit", "Investment Return", "Bank Interest", "Payment Received", "Other"]
-
-            UserDefaults.standard.set(accounts, forKey: "accounts")
-            UserDefaults.standard.set(categories, forKey: "categories")
-            UserDefaults.standard.set(incomeCategories, forKey: "incomeCategories")
-        }
-        
-        
         // create db entries
         //let re = RandomEntries()
         //re.GenerateRandomEntries(realm: realm)
@@ -127,7 +101,9 @@ class ViewController: UIViewController {
                 segCtrl_CreateEntry_Type.selectedSegmentIndex = 0
             }
             button_CreateEntry_Account.setTitle(amountArray[0].account!, for: .normal)
+            
             button_CreateEntry_Category.setTitle(amountArray[0].category!, for: .normal)
+            
             if (amountArray[0].location != nil){
                 textField_CreateEntry_Location.text = amountArray[0].location!
             }

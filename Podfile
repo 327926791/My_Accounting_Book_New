@@ -15,6 +15,8 @@ target 'My_Accounting_Book' do
   
   pod 'DropDown'
 
+  pod 'SideMenu'
+
   pod 'iOSDropDown'
 
   pod "FuzzyMatchingSwift"
@@ -34,8 +36,6 @@ target 'My_Accounting_Book' do
   pod 'SwiftEntryKit', '0.8.7'
 
   pod 'QuickLayout', '2.1.1'
-
-  pod 'Charts'
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
