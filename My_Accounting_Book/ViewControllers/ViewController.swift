@@ -101,7 +101,9 @@ class ViewController: UIViewController {
                 segCtrl_CreateEntry_Type.selectedSegmentIndex = 0
             }
             button_CreateEntry_Account.setTitle(amountArray[0].account!, for: .normal)
+            
             button_CreateEntry_Category.setTitle(amountArray[0].category!, for: .normal)
+            
             if (amountArray[0].location != nil){
                 textField_CreateEntry_Location.text = amountArray[0].location!
             }
