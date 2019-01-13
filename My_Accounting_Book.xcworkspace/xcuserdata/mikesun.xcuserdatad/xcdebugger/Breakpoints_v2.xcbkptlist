@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_Accounting_Book/ViewControllers/CSVViewController.swift"
-            timestampString = "569094972.4130681"
+            timestampString = "569096496.406279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -26,13 +26,77 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "My_Accounting_Book/ViewControllers/CSVViewController.swift"
-            timestampString = "569094972.413139"
+            timestampString = "569096496.406355"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
             landmarkName = "generateButtonPressed(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "My_Accounting_Book/ViewControllers/CategoryAccountManagementViewController.swift"
+            timestampString = "569096496.40641"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "renameButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "My_Accounting_Book/ViewControllers/CategoryAccountManagementViewController.swift"
+            timestampString = "569096496.4070179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "renameButtonPressed(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "My_Accounting_Book.CategoryAccountManagementViewController.renameButtonPressed(Any) -&gt; ()"
+                  moduleName = "My_Accounting_Book"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikesun/Documents/GitHub/My_Accounting_Book_New/My_Accounting_Book/ViewControllers/CategoryAccountManagementViewController.swift"
+                  timestampString = "569096496.455519"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "1522">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[3] = Value Promoted from Box&gt; of closure #2 (__C.UIAlertAction) -&gt; () in My_Accounting_Book.CategoryAccountManagementViewController.renameButtonPressed(Any) -&gt; ()"
+                  moduleName = "My_Accounting_Book"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mikesun/Documents/GitHub/My_Accounting_Book_New/My_Accounting_Book/ViewControllers/CategoryAccountManagementViewController.swift"
+                  timestampString = "569096496.458419"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "119">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
