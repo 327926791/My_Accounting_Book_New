@@ -58,6 +58,7 @@
 		4274ABC5F5B3DDCB24AC3652 /* Pods-My_Accounting_BookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Accounting_BookUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Accounting_BookUITests/Pods-My_Accounting_BookUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4558AA07FF60F0EA1277C262 /* Pods_My_Accounting_BookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Accounting_BookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5C9735410835D5197814B3 /* Pods-My_Accounting_Book.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Accounting_Book.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Accounting_Book/Pods-My_Accounting_Book.debug.xcconfig"; sourceTree = "<group>"; };
+		5FAF7F7621EBBE8300F7BC3C /* My_Accounting_Book.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = My_Accounting_Book.entitlements; sourceTree = "<group>"; };
 		71F6DE661276E491526E9D82 /* Pods_My_Accounting_BookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Accounting_BookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		770AC2F521AC5BBC00799E23 /* SuggestionTrie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTrie.swift; sourceTree = "<group>"; };
 		770AC2F721AC704600799E23 /* MyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 		7793DEF821AC4D78001A61EA /* My_Accounting_Book */ = {
 			isa = PBXGroup;
 			children = (
+				5FAF7F7621EBBE8300F7BC3C /* My_Accounting_Book.entitlements */,
 				D3A01A7821E7F96500DDCFD4 /* Custom Cell */,
 				7793DF2721AC4E82001A61EA /* Model */,
 				7793DF2A21AC4EBB001A61EA /* ViewControllers */,
@@ -320,6 +322,11 @@
 					7793DEF521AC4D78001A61EA = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.Siri = {
+								enabled = 1;
+							};
+						};
 					};
 					7793DF0921AC4D79001A61EA = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -421,6 +428,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 				"${BUILT_PRODUCTS_DIR}/TransitionableTab/TransitionableTab.framework",
@@ -439,6 +447,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionableTab.framework",
@@ -690,15 +699,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = My_Accounting_Book/My_Accounting_Book.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 53NVC6N6LS;
+				DEVELOPMENT_TEAM = 587R76744P;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = My_Accounting_Book/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Team-927.My-Accounting-Book";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Team-927.My-Accounting-Book-new";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "My_Accounting_Book-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -713,15 +723,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = My_Accounting_Book/My_Accounting_Book.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 53NVC6N6LS;
+				DEVELOPMENT_TEAM = 587R76744P;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = My_Accounting_Book/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Team-927.My-Accounting-Book";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Team-927.My-Accounting-Book-new";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "My_Accounting_Book-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

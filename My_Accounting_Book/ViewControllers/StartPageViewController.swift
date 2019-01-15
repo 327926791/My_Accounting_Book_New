@@ -45,7 +45,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: SideMenuViewController())
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: VisionViewController())
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
         SideMenuManager.default.menuPresentMode = .menuSlideIn
         
