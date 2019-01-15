@@ -28,9 +28,9 @@
 		82BC780F17A3E09F58DAA0E3 /* Pods_My_Accounting_BookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F6DE661276E491526E9D82 /* Pods_My_Accounting_BookTests.framework */; };
 		C26B8DAC7A143FF2B8C650EA /* Pods_My_Accounting_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2F9B7C0E8A90B105541062 /* Pods_My_Accounting_Book.framework */; };
 		D3144A8D21D727890076ECC0 /* StartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3144A8C21D727890076ECC0 /* StartPageViewController.swift */; };
-		D3144A8F21D7AF8F0076ECC0 /* NavigationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */; };
 		D3A01A7F21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A01A7D21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift */; };
 		D3A01A8021E7F9F600DDCFD4 /* TranscriptTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A01A7E21E7F9F600DDCFD4 /* TranscriptTableViewCell.xib */; };
+		D3F87CDD21EC16D800FE4A6F /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F87CDC21EC16D800FE4A6F /* SideMenuViewController.swift */; };
 		EABCBAD7BD94301FA4D9396A /* Pods_My_Accounting_BookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4558AA07FF60F0EA1277C262 /* Pods_My_Accounting_BookUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,9 +89,9 @@
 		8FE67CBC01A64AE5C0902F6E /* Pods-My_Accounting_BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Accounting_BookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Accounting_BookTests/Pods-My_Accounting_BookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A143CDBD7341585A7D3DE6D7 /* Pods-My_Accounting_BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Accounting_BookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My_Accounting_BookTests/Pods-My_Accounting_BookTests.release.xcconfig"; sourceTree = "<group>"; };
 		D3144A8C21D727890076ECC0 /* StartPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageViewController.swift; sourceTree = "<group>"; };
-		D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPage.swift; sourceTree = "<group>"; };
 		D3A01A7D21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptTableViewCell.swift; sourceTree = "<group>"; };
 		D3A01A7E21E7F9F600DDCFD4 /* TranscriptTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TranscriptTableViewCell.xib; sourceTree = "<group>"; };
+		D3F87CDC21EC16D800FE4A6F /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,10 +198,10 @@
 		7793DF2A21AC4EBB001A61EA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D3F87CDC21EC16D800FE4A6F /* SideMenuViewController.swift */,
 				7793DEFB21AC4D78001A61EA /* ViewController.swift */,
 				D3144A8C21D727890076ECC0 /* StartPageViewController.swift */,
 				77C0DCF421CF0AD2007FBAC2 /* VisionViewController.swift */,
-				D3144A8E21D7AF8F0076ECC0 /* NavigationPage.swift */,
 				77FD594021E1C87E00FA01B1 /* EditEntryViewController.swift */,
 				77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */,
 			);
@@ -512,8 +512,8 @@
 				7793DEFC21AC4D78001A61EA /* ViewController.swift in Sources */,
 				D3A01A7F21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift in Sources */,
 				77C0DCF521CF0AD2007FBAC2 /* VisionViewController.swift in Sources */,
-				D3144A8F21D7AF8F0076ECC0 /* NavigationPage.swift in Sources */,
 				7793DEFA21AC4D78001A61EA /* AppDelegate.swift in Sources */,
+				D3F87CDD21EC16D800FE4A6F /* SideMenuViewController.swift in Sources */,
 				770AC2FC21AD928300799E23 /* FuzzySearch.swift in Sources */,
 				D3144A8D21D727890076ECC0 /* StartPageViewController.swift in Sources */,
 				770AC2F821AC704600799E23 /* MyExtensions.swift in Sources */,

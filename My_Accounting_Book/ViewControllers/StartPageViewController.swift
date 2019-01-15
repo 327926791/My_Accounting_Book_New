@@ -37,6 +37,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     private var MonthDropdown = DropDown()
+    private var typeFilterDropdown = DropDown()
     private var categoryFilterDropdown = DropDown()
     private var accountFilterDropdown = DropDown()
     private var sortDropdown = DropDown()
@@ -71,6 +72,13 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
+        typeFilterDropdown.anchorView = typeFilterButton
+        typeFilterDropdown.direction = .bottom
+        typeFilterDropdown.dataSource = ["Income", "Expense"]
+        if typeFilterDropdown.selectedItem == nil{
+            self.typeFilterButton.setTitle("All", for: UIControl.State.normal)
+        }
+        
         categoryFilterDropdown.anchorView = categoryFilterButton
         categoryFilterDropdown.direction = .bottom
         categoryFilterDropdown.dataSource = categories
@@ -78,7 +86,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
            // print("category filter dropdown init select nil")
         }
         categoryFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.categoryFilterDropdown.selectedItem != nil {
-            self.categoryFilterButton.setTitle("category", for: UIControl.State.normal)
+            self.categoryFilterButton.setTitle("Category", for: UIControl.State.normal)
             }
         }
         
@@ -89,7 +97,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             //print("account filter dropdown init select nil")
         }
         accountFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.accountFilterDropdown.selectedItem != nil {
-            self.accountFilterButton.setTitle("account", for: UIControl.State.normal)
+            self.accountFilterButton.setTitle("Account", for: UIControl.State.normal)
             }
         }
         
@@ -100,7 +108,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             //print("sort dropdown init select nil")
         }
         sortDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.sortDropdown.selectedItem != nil {
-            self.sortButton.setTitle("sort by", for: UIControl.State.normal)
+            self.sortButton.setTitle("Sort by", for: UIControl.State.normal)
             }
         }
         // Do any additional setup after loading the view.
@@ -110,6 +118,10 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidAppear(_ animated: Bool) {
         print("viewDidAppear")
         super.viewDidAppear(animated)
+        realm = try! Realm(configuration: Realm.Configuration(
+            schemaVersion: 2
+        ))
+        
         let ret = loadDisplay()
         if let selection = displayMonthDropDown.title(for: UIControl.State.normal) {
             let year = selection.substring(toIndex: 4)
@@ -265,11 +277,31 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         monthlyExpense.text = "Monthly Expense: \(sum_expense)"
     }
     
+    
+    @IBOutlet weak var typeFilterButton: UIButton!
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var accountFilterButton: UIButton!
     @IBOutlet weak var categoryFilterButton: UIButton!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
+    
+    
+    @IBAction func pressTypeFilterButton(_ sender: Any) {
+        typeFilterDropdown.show()
+        typeFilterDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.typeFilterDropdown.selectedItem == "Income" {
+                self.typeFilterButton.setTitle(self.typeFilterDropdown.selectedItem!, for: UIControl.State.normal)
+                self.categoryFilterDropdown.dataSource = incomeCategories
+                self.categoryFilterDropdown.clearSelection()
+                self.categoryFilterButton.setTitle("Category", for: UIControl.State.normal)
+            }
+            if self.typeFilterDropdown.selectedItem == "Expense" {
+                self.typeFilterButton.setTitle(self.typeFilterDropdown.selectedItem!, for: UIControl.State.normal)
+                self.categoryFilterDropdown.dataSource = categories
+                self.categoryFilterDropdown.clearSelection()
+                self.categoryFilterButton.setTitle("Category", for: UIControl.State.normal)
+            }
+        }
+    }
     
     @IBAction func pressCategoryFilterButton(_ sender: Any) {
         categoryFilterDropdown.show()
@@ -302,12 +334,15 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func pressClearButton(_ sender: Any) {
+        typeFilterDropdown.clearSelection()
+        typeFilterButton.setTitle("All", for: UIControl.State.normal)
         accountFilterDropdown.clearSelection()
-        accountFilterButton.setTitle("account", for: UIControl.State.normal)
+        accountFilterButton.setTitle("Account", for: UIControl.State.normal)
         categoryFilterDropdown.clearSelection()
-        categoryFilterButton.setTitle("category", for: UIControl.State.normal)
+        categoryFilterButton.setTitle("Category", for: UIControl.State.normal)
         sortDropdown.clearSelection()
-        sortButton.setTitle("sort by", for: UIControl.State.normal)
+        sortButton.setTitle("Sort by", for: UIControl.State.normal)
+        displayTransactions()
     }
     
     
@@ -316,7 +351,8 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func displayTransactions () {
         var sortCondition : String = ""
-        var query : String
+        var query : String? = nil
+        var type : Bool = true //expense
         
         label1Array.removeAll()
         label2Array.removeAll()
@@ -341,7 +377,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         if sortDropdown.selectedItem != nil{
             sortCondition = sortDropdown.selectedItem!
         }
-        print(sortCondition)
+        //print(sortCondition)
         switch (sortCondition){
         case "date down":
             sort_Condition = "dt"
@@ -364,18 +400,36 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
             ascending_OrNot = false
             break
         }
+        if typeFilterDropdown.selectedItem == "Income"{
+            type = false
+            query = "type = \(type)"
+        }else if typeFilterDropdown.selectedItem == "Expense"{
+            type = true
+            query = "type = \(type)"
+        }else{
+            query = nil
+        }
         
         if categoryFilterDropdown.selectedItem == nil && accountFilterDropdown.selectedItem == nil{
-            transactions = realm.objects(Transaction.self).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+            if query == nil{
+                transactions = realm.objects(Transaction.self).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+            }else {
+                transactions = realm.objects(Transaction.self).filter(query!).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+            }
         }else if categoryFilterDropdown.selectedItem != nil && accountFilterDropdown.selectedItem == nil{
             query = "category = \"\(categoryFilterDropdown.selectedItem!)\""
-            transactions = realm.objects(Transaction.self).filter(query).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+            transactions = realm.objects(Transaction.self).filter(query!).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
         }else if categoryFilterDropdown.selectedItem == nil && accountFilterDropdown.selectedItem != nil{
-            query = "account = \"\(accountFilterDropdown.selectedItem!)\""
-            transactions = realm.objects(Transaction.self).filter(query).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+            if query == nil{
+                query = "account = \"\(accountFilterDropdown.selectedItem!)\""
+            }else{
+                query = query! + "&& account = \"\(accountFilterDropdown.selectedItem!)\""
+            }
+            transactions = realm.objects(Transaction.self).filter(query!).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+            
         }else if categoryFilterDropdown.selectedItem != nil && accountFilterDropdown.selectedItem != nil{
             query = "category = \"\(categoryFilterDropdown.selectedItem!)\" && account = \"\(accountFilterDropdown.selectedItem!)\""
-            transactions = realm.objects(Transaction.self).filter(query).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
+            transactions = realm.objects(Transaction.self).filter(query!).sorted(byKeyPath: "\(sort_Condition)", ascending: ascending_OrNot)
         }else{
             print("no match case")
             transactions = realm.objects(Transaction.self)
