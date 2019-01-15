@@ -43,9 +43,17 @@ class ViewController: UIViewController {
         }
     }
     
+    
+
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var pageView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        scrollView = UIScrollView(frame: view.bounds)
+        scrollView.contentSize = pageView.bounds.size
+        scrollView.addSubview(pageView)
+        view.addSubview(scrollView)
         // create db entries
         //let re = RandomEntries()
         //re.GenerateRandomEntries(realm: realm)
