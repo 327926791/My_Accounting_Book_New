@@ -97,6 +97,7 @@ class ViewController: UIViewController {
     }
     
     // *** CCW ***
+    
     func autoCompleteFromAmount(amountStr: String){
         print(amountStr)
         let amountArray = realm.objects(Transaction.self).filter("amountStr BEGINSWITH '\(amountStr)'").sorted(byKeyPath: "dt", ascending: false)
@@ -511,6 +512,10 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func printLog(){
+        print("test for siri")
     }
 }
 

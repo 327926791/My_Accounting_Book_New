@@ -7,7 +7,30 @@
 		<key>My_Accounting_Book.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
+		<key>Test Siri Shortcut.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>17</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7793DEF521AC4D78001A61EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7793DF0921AC4D79001A61EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7793DF1421AC4D79001A61EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
