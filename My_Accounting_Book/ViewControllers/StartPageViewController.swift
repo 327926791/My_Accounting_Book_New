@@ -257,7 +257,8 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let transactions = realm.objects(Transaction.self)
         if transactions.count == 0{
-            return
+            monthlyIncome.text = "Monthly Income: \(sum_income)"
+            monthlyExpense.text = "Monthly Expense: \(sum_expense)"
         }
         for item in transactions {
             let type = item.type
