@@ -16,7 +16,7 @@ import DropDown
 import Dropper
 import SwiftEntryKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     // Realm db
     private var realm = try! Realm(configuration: Realm.Configuration(
         schemaVersion: 2
@@ -50,10 +50,24 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //gyq
         scrollView = UIScrollView(frame: view.bounds)
         scrollView.contentSize = pageView.bounds.size
         scrollView.addSubview(pageView)
         view.addSubview(scrollView)
+        
+        textField_CreateEntry_Amount.delegate = self
+        textField_CreateEntry_Location.delegate = self
+        textField_CreateEntry_Description.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pageViewTaped))
+        pageView.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+ 
+        
+        ///////////////////////
         // create db entries
         //let re = RandomEntries()
         //re.GenerateRandomEntries(realm: realm)
@@ -95,7 +109,43 @@ class ViewController: UIViewController {
         formatter.dateFormat = "MM/dd/yyyy"
         button_CreateEntry_SelectDate.setTitle(formatter.string(from: Date()), for: .normal)
     }
+    //gyq
+    @objc func pageViewTaped(){
+        print("end editting")
+        textField_CreateEntry_Amount.endEditing(true)
+        textField_CreateEntry_Location.endEditing(true)
+        textField_CreateEntry_Description.endEditing(true)
+    }
     
+    weak var activeField: UITextField?
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeField = nil
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeField = textField
+    }
+    
+    @objc func keyboardDidShow(notification: NSNotification) {
+        if let activeField = self.activeField, let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+            var aRect = self.view.frame
+            aRect.size.height -= keyboardSize.size.height
+            if (!aRect.contains(activeField.frame.origin)) {
+                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+        }
+    }
+    
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
+        let contentInsets = UIEdgeInsets.zero
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+    }
+    /////////////////////
     // *** CCW ***
     func autoCompleteFromAmount(amountStr: String){
         print(amountStr)
