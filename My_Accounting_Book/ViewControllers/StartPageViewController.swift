@@ -491,4 +491,20 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         return (year, month)
     }
 
+    @IBAction func addEntry(_ sender: Any) {
+        let activity = NSUserActivity(activityType: createEntry)
+        
+        activity.title = "Record your transaction"
+        
+        activity.isEligibleForSearch = true
+        if #available(iOS 12.0, *) {
+            activity.isEligibleForPrediction = true
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        self.userActivity = activity
+        self.userActivity?.becomeCurrent()
+    }
+    
 }

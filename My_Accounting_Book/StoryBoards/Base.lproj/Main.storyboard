@@ -663,6 +663,7 @@
                                         <rect key="frame" x="335" y="650" width="30" height="30"/>
                                         <state key="normal" title="Add"/>
                                         <connections>
+                                            <action selector="addEntry:" destination="Bff-WD-uFs" eventType="touchUpInside" id="fVM-nc-wgG"/>
                                             <segue destination="BYZ-38-t0r" kind="show" id="Ffl-gi-9wV"/>
                                         </connections>
                                     </button>

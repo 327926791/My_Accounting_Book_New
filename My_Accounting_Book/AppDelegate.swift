@@ -8,11 +8,13 @@
 
 import UIKit
 import RealmSwift
+import IntentsUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var nav: UINavigationController?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -66,6 +68,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(
+        _ application: UIApplication,
+        continue userActivity: NSUserActivity,
+        restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
+        ) -> Bool {
+        
+        switch userActivity.activityType {
+        case createEntry:
+            let vc = ViewController()
+            nav?.pushViewController(vc, animated: false)
+        default:
+            print("No such activities")
+        }
+
+        
+        /*
+        if let viewController = window?.rootViewController as? ViewController{
+            viewController.printLog()
+        }
+        */
+        return true
+    }
 
 }
 
