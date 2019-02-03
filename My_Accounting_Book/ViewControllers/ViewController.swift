@@ -15,6 +15,7 @@ import SearchTextField
 import DropDown
 import Dropper
 import SwiftEntryKit
+import Material
 
 class ViewController: UIViewController, UITextFieldDelegate {
     // Realm db
@@ -33,7 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var button_CreateEntry_Category: UIButton!
     @IBOutlet weak var textField_CreateEntry_Location: SearchTextField!
     @IBOutlet weak var button_CreateEntry_SelectDate: UIButton!
-    @IBOutlet weak var textField_CreateEntry_Description: UITextField!
+    @IBOutlet weak var textField_CreateEntry_Description: TextField!
     @IBOutlet weak var button_CreateEntry_Create: UIButton!
     @IBOutlet weak var button_CreateEntry_SaveAsTemplate: UIButton!
     @IBOutlet weak var buttonCreateTest: UIButton! // ** test ** long press
@@ -60,12 +61,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textField_CreateEntry_Location.delegate = self
         textField_CreateEntry_Description.delegate = self
         
+        textField_CreateEntry_Description.placeholder = "Description"
+        //textField_CreateEntry_Description.clearButtonMode = .whileEditing
+        textField_CreateEntry_Description.isClearIconButtonEnabled = true
+        textField_CreateEntry_Description.isPlaceholderUppercasedWhenEditing = true
+      //  textField_CreateEntry_Description.placeholderAnimation = .hidden
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pageViewTaped))
         pageView.addGestureRecognizer(tapGesture)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
  
+
         
         ///////////////////////
         // create db entries
@@ -110,6 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         button_CreateEntry_SelectDate.setTitle(formatter.string(from: Date()), for: .normal)
     }
     //gyq
+    
     @objc func pageViewTaped(){
         print("end editting")
         textField_CreateEntry_Amount.endEditing(true)

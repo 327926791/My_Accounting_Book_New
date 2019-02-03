@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import DropDown
 import SideMenu
+import Material
 
 class StartPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -123,6 +124,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         ))
         
         let ret = loadDisplay()
+        MonthDropdown.dataSource = DropdownButtonDisplay
         if let selection = displayMonthDropDown.title(for: UIControl.State.normal) {
             let year = selection.substring(toIndex: 4)
             let month = selection.substring(fromIndex: 5)
@@ -139,7 +141,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //press select month button
-    @IBOutlet weak var displayMonthDropDown: UIButton!
+    @IBOutlet weak var displayMonthDropDown: IconButton!
     @IBAction func displayMonth(_ sender: Any) {
         MonthDropdown.show()
         MonthDropdown.selectionAction = { [unowned self] (index: Int, item: String) in if self.MonthDropdown.selectedItem != nil {
@@ -279,12 +281,12 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-    @IBOutlet weak var typeFilterButton: UIButton!
-    @IBOutlet weak var sortButton: UIButton!
-    @IBOutlet weak var accountFilterButton: UIButton!
-    @IBOutlet weak var categoryFilterButton: UIButton!
-    @IBOutlet weak var filterButton: UIButton!
-    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var typeFilterButton: RaisedButton!
+    @IBOutlet weak var sortButton: RaisedButton!
+    @IBOutlet weak var accountFilterButton: RaisedButton!
+    @IBOutlet weak var categoryFilterButton: RaisedButton!
+    @IBOutlet weak var filterButton: FABButton!
+    @IBOutlet weak var clearButton: FABButton!
     
     
     @IBAction func pressTypeFilterButton(_ sender: Any) {
