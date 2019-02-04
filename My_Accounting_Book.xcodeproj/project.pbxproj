@@ -33,6 +33,7 @@
 		D35C59EE2206095B00C54FC4 /* AppBottomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35C59ED2206095B00C54FC4 /* AppBottomNavigationController.swift */; };
 		D3A01A7F21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A01A7D21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift */; };
 		D3A01A8021E7F9F600DDCFD4 /* TranscriptTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A01A7E21E7F9F600DDCFD4 /* TranscriptTableViewCell.xib */; };
+		D3DB0C832206CCE100EE1C73 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DB0C822206CCE100EE1C73 /* SearchTextField.swift */; };
 		D3F87CDD21EC16D800FE4A6F /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F87CDC21EC16D800FE4A6F /* SideMenuViewController.swift */; };
 		EABCBAD7BD94301FA4D9396A /* Pods_My_Accounting_BookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4558AA07FF60F0EA1277C262 /* Pods_My_Accounting_BookUITests.framework */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		D35C59ED2206095B00C54FC4 /* AppBottomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBottomNavigationController.swift; sourceTree = "<group>"; };
 		D3A01A7D21E7F9F600DDCFD4 /* TranscriptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptTableViewCell.swift; sourceTree = "<group>"; };
 		D3A01A7E21E7F9F600DDCFD4 /* TranscriptTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TranscriptTableViewCell.xib; sourceTree = "<group>"; };
+		D3DB0C822206CCE100EE1C73 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		D3F87CDC21EC16D800FE4A6F /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +200,7 @@
 				770AC2F721AC704600799E23 /* MyExtensions.swift */,
 				770AC2FB21AD928300799E23 /* FuzzySearch.swift */,
 				770AC2FD21ADD22700799E23 /* Popover.swift */,
+				D3DB0C822206CCE100EE1C73 /* SearchTextField.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				D35C59EE2206095B00C54FC4 /* AppBottomNavigationController.swift in Sources */,
 				77FD594121E1C87E00FA01B1 /* EditEntryViewController.swift in Sources */,
 				7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */,
+				D3DB0C832206CCE100EE1C73 /* SearchTextField.swift in Sources */,
 				5F0EECF021EED5F300320216 /* Siri_Shortcut.swift in Sources */,
 				7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */,
 				77519E6921E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift in Sources */,

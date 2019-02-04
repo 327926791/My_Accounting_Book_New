@@ -29,10 +29,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // Outlets
     @IBOutlet weak var segCtrl_CreateEntry_Type: UISegmentedControl!
-    @IBOutlet weak var textField_CreateEntry_Amount: SearchTextField!
+    //@IBOutlet weak var textField_CreateEntry_Amount: SearchTextField!
     @IBOutlet weak var button_CreateEntry_Account: UIButton!
     @IBOutlet weak var button_CreateEntry_Category: UIButton!
-    @IBOutlet weak var textField_CreateEntry_Location: SearchTextField!
+    //@IBOutlet weak var textField_CreateEntry_Location: SearchTextField!
     @IBOutlet weak var button_CreateEntry_SelectDate: UIButton!
     @IBOutlet weak var textField_CreateEntry_Description: TextField!
     @IBOutlet weak var button_CreateEntry_Create: UIButton!
@@ -48,6 +48,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var pageView: UIView!
+    @IBOutlet var textField_CreateEntry_Amount: UISearchTextField!
+    @IBOutlet var textField_CreateEntry_Location: UISearchTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +62,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textField_CreateEntry_Amount.delegate = self
         textField_CreateEntry_Location.delegate = self
         textField_CreateEntry_Description.delegate = self
+        textField_CreateEntry_Amount.keyboardType = UIKeyboardType.decimalPad
         
         textField_CreateEntry_Description.placeholder = "Description"
-        //textField_CreateEntry_Description.clearButtonMode = .whileEditing
         textField_CreateEntry_Description.isClearIconButtonEnabled = true
         textField_CreateEntry_Description.isPlaceholderUppercasedWhenEditing = true
-      //  textField_CreateEntry_Description.placeholderAnimation = .hidden
+        textField_CreateEntry_Description.placeholderActiveColor = UIColor.black
+        
+        //testTextField = UISearchTextField()
+        textField_CreateEntry_Location.delegate = self
+        textField_CreateEntry_Location.placeholder = "Location"
+        textField_CreateEntry_Location.isClearIconButtonEnabled = true
+        textField_CreateEntry_Location.isPlaceholderUppercasedWhenEditing = true
+        textField_CreateEntry_Location.placeholderActiveColor = UIColor.black
+        //textField_CreateEntry_Location.color = UIColor.black
+        
+        textField_CreateEntry_Amount.placeholder = "Amount"
+        textField_CreateEntry_Amount.isClearIconButtonEnabled = true
+        textField_CreateEntry_Amount.isPlaceholderUppercasedWhenEditing = true
+        textField_CreateEntry_Amount.placeholderActiveColor = UIColor.black
+        //  textField_CreateEntry_Description.placeholderAnimation = .hidden*/
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pageViewTaped))
         pageView.addGestureRecognizer(tapGesture)
@@ -117,6 +133,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         formatter.dateFormat = "MM/dd/yyyy"
         button_CreateEntry_SelectDate.setTitle(formatter.string(from: Date()), for: .normal)
     }
+    
     //gyq
     
     @objc func pageViewTaped(){
@@ -391,6 +408,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Success message
         self.ShowSuccessMessage(text: "The entry has been created.")
+        //refresh page -- gyq
+        textField_CreateEntry_Amount.text = ""
+        textField_CreateEntry_Location.text = ""
+        textField_CreateEntry_Description.text = ""
+        self.viewDidLoad()
+        //self.viewDidAppear()
     }
     
     
