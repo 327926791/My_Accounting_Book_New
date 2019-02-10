@@ -17,6 +17,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var transcriptTalbeView: UITableView!
     var label1Array : [String] = [String]()
     var label2Array : [String] = [String]()
+    var entryID : [Int] = [Int]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return label1Array.count
@@ -26,7 +27,52 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTranscriptCell", for: indexPath) as! TranscriptTableViewCell
         cell.tableCellLabel1.text = label1Array[indexPath.row]
         cell.tableCellLabel2.text = label2Array[indexPath.row]
+        cell.id = entryID[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // delete item at indexPath
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete the transaction?", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Yes", style: .default, handler: {(action)->Void in
+                //print("yes")
+                //let selected_row = tableView.indexPathForSelectedRow()
+                //var cell : TranscriptTableViewCell
+                let cell = tableView.cellForRow(at: indexPath) as! TranscriptTableViewCell
+                self.delete_entry(id: cell.id)
+                
+            })
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                //print("cancel")
+            }
+            
+            dialogMessage.addAction(ok)
+            dialogMessage.addAction(cancel)
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+        
+        let modify = UITableViewRowAction(style: .normal, title: "Modify") { (action, indexPath) in
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "modification_view")
+            self.present(nextViewController, animated:true, completion:nil)
+            //self.performSegue(withIdentifier: "modification_view", sender: self)// share item at indexPath
+        }
+        
+        modify.backgroundColor = UIColor.gray
+        delete.backgroundColor = UIColor.red
+        
+        
+        return [delete, modify]
+    }
+    
+    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> IndexPath{
+        return indexPath
+    }
+    
+    func delete_entry(id : Int) {
+        print("delete entry with id: \(id)")
     }
     
     var DropdownButtonDisplay = [String]()
@@ -464,6 +510,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
                     label2 = label2 + String(amt)
                     self.label1Array.append(label1)
                     self.label2Array.append(label2)
+                    self.entryID.append(item.id)
                 }
             }
 

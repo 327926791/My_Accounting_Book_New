@@ -12,6 +12,8 @@ class TranscriptTableViewCell: UITableViewCell {
 
     @IBOutlet weak var tableCellLabel1: UILabel!
     @IBOutlet weak var tableCellLabel2: UILabel!
+    var id : Int = -1
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
