@@ -857,34 +857,128 @@
         <!--Edit Account-->
         <scene sceneID="gb7-TJ-XOn">
             <objects>
-                <viewController id="5E7-hK-zI2" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ksf-w0-kyS">
+                <viewController id="5E7-hK-zI2" customClass="CategoryAccountManagementViewController" customModule="My_Accounting_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ksf-w0-kyS" customClass="Cate">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ID3-Cf-uVi">
+                                <rect key="frame" x="46" y="83" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc4-8L-F0z">
+                                <rect key="frame" x="46" y="137" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="5E7-hK-zI2" eventType="touchUpInside" id="o51-m3-uOB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ltv-wp-D9C">
+                                <rect key="frame" x="164" y="137" width="56" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Rename"/>
+                                <connections>
+                                    <action selector="renameButtonPressed:" destination="5E7-hK-zI2" eventType="touchUpInside" id="oxV-iO-rkZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVR-3Y-C2I">
+                                <rect key="frame" x="284" y="137" width="45" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="5E7-hK-zI2" eventType="touchUpInside" id="h7Z-Rr-D4c"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdm-rw-AGt">
+                                <rect key="frame" x="145" y="83" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Category"/>
+                                <connections>
+                                    <action selector="chooseTargetButtonPressed:" destination="5E7-hK-zI2" eventType="touchUpInside" id="TZ3-SR-3sa"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pPi-zO-0ue">
+                                <rect key="frame" x="0.0" y="169" width="375" height="560"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="1VK-Ax-nAs">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1VK-Ax-nAs" id="lnb-8A-sgR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="I4e-Eb-jTl"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Edit Account" image="cm_pen_white" id="pjV-d8-wCD"/>
+                    <connections>
+                        <outlet property="chooseTargetButton" destination="Rdm-rw-AGt" id="47M-86-pmE"/>
+                        <outlet property="tableView" destination="pPi-zO-0ue" id="Kvd-OA-XkB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0g-ux-sm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="757"/>
+            <point key="canvasLocation" x="1813.5999999999999" y="755.9113300492611"/>
         </scene>
         <!--Chart-->
         <scene sceneID="JnR-eR-ebl">
             <objects>
-                <viewController id="PGP-pD-57E" sceneMemberID="viewController">
+                <viewController id="PGP-pD-57E" customClass="GraphViewController" customModule="My_Accounting_Book" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mzy-lv-Hy2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCz-wp-FBy">
+                                <rect key="frame" x="321" y="62" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Plot"/>
+                                <connections>
+                                    <action selector="plotButtonPressed:" destination="PGP-pD-57E" eventType="touchUpInside" id="eKM-aZ-HxR"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xyK-mi-5RJ">
+                                <rect key="frame" x="0.0" y="446" width="375" height="283"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="GZ6-QE-5oG">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GZ6-QE-5oG" id="4dO-wC-Jaw">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHh-1a-XiH" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="95" width="375" height="343"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rEH-Wo-sfh"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" image="ic_work_white" id="h19-bq-5Gy"/>
+                    <connections>
+                        <outlet property="chartView" destination="bHh-1a-XiH" id="oSB-Bd-KDi"/>
+                        <outlet property="selectView" destination="xyK-mi-5RJ" id="IkH-vg-v3D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QTE-pz-y2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2463" y="752"/>
+            <point key="canvasLocation" x="2461.5999999999999" y="751.47783251231533"/>
         </scene>
         <!--ButtomNavigation-->
         <scene sceneID="Fq8-uR-ChW">
