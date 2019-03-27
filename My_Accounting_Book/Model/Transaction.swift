@@ -14,11 +14,15 @@ let EXPENSE = true
 let INCOME = false
 
 // Accounts
-var accounts: [String] = ["Cash", "Debit Card", "Credit Card"]
+//var accounts: [String] = ["Cash", "Debit Card", "Credit Card"]
+//
+//// Categories
+//var categories: [String] = ["Food and Drink", "Apparel", "Rent", "Loan and Mortgage", "Bill", "Transportation", "Travelling", "Entertainment", "Health and Fitness", "Education", "Grocery", "Shopping", "Gift", "Online Shopping", "Other"]
+//var incomeCategories: [String] = ["Salary and Wage", "Business Profit", "Investment Return", "Bank Interest", "Payment Received", "Other"]
+var accounts: [String] = Array()
+var categories: [String] = Array()
+var incomeCategories: [String] = Array()
 
-// Categories
-var categories: [String] = ["Food and Drink", "Apparel", "Rent", "Loan and Mortgage", "Bill", "Transportation", "Travelling", "Entertainment", "Health and Fitness", "Education", "Grocery", "Shopping", "Gift", "Online Shopping", "Other"]
-var incomeCategories: [String] = ["Salary and Wage", "Business Profit", "Investment Return", "Bank Interest", "Payment Received", "Other"]
 
 class Transaction: Object {
     @objc dynamic var id = UUID().uuidString

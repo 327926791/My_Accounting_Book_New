@@ -10,6 +10,10 @@
 		5F0EECEE21EECC8900320216 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0EECED21EECC8900320216 /* Intents.framework */; };
 		5F0EECF021EED5F300320216 /* Siri_Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0EECEF21EED5F300320216 /* Siri_Shortcut.swift */; };
 		5F0EECF221EEEA4700320216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F0EECF121EEEA4700320216 /* Assets.xcassets */; };
+		6DFA953A224A6B9C0036C944 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 6DFA9539224A6B9C0036C944 /* Podfile */; };
+		6DFA953C224A6DE20036C944 /* CategoryAccountManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA953B224A6DE20036C944 /* CategoryAccountManagementViewController.swift */; };
+		6DFA953E224A70440036C944 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA953D224A70440036C944 /* GraphViewController.swift */; };
+		6DFA9540224A716C0036C944 /* CSVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA953F224A716C0036C944 /* CSVViewController.swift */; };
 		770AC2F621AC5BBC00799E23 /* SuggestionTrie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2F521AC5BBC00799E23 /* SuggestionTrie.swift */; };
 		770AC2F821AC704600799E23 /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2F721AC704600799E23 /* MyExtensions.swift */; };
 		770AC2FA21AD04CC00799E23 /* places.txt in Resources */ = {isa = PBXBuildFile; fileRef = 770AC2F921AD04CC00799E23 /* places.txt */; };
@@ -66,6 +70,10 @@
 		5F0EECEF21EED5F300320216 /* Siri_Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Siri_Shortcut.swift; sourceTree = "<group>"; };
 		5F0EECF121EEEA4700320216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FAF7F7621EBBE8300F7BC3C /* My_Accounting_Book.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = My_Accounting_Book.entitlements; sourceTree = "<group>"; };
+		6DFA9539224A6B9C0036C944 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		6DFA953B224A6DE20036C944 /* CategoryAccountManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAccountManagementViewController.swift; sourceTree = "<group>"; };
+		6DFA953D224A70440036C944 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		6DFA953F224A716C0036C944 /* CSVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVViewController.swift; sourceTree = "<group>"; };
 		71F6DE661276E491526E9D82 /* Pods_My_Accounting_BookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Accounting_BookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		770AC2F521AC5BBC00799E23 /* SuggestionTrie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTrie.swift; sourceTree = "<group>"; };
 		770AC2F721AC704600799E23 /* MyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
@@ -135,6 +143,7 @@
 		7793DEED21AC4D78001A61EA = {
 			isa = PBXGroup;
 			children = (
+				6DFA9539224A6B9C0036C944 /* Podfile */,
 				7791E5AE21D7EA1A00CCEC7B /* OpenCVWrapper.h */,
 				7791E5AF21D7EA1A00CCEC7B /* OpenCVWrapper.mm */,
 				770AC2F921AD04CC00799E23 /* places.txt */,
@@ -216,6 +225,9 @@
 				77519E6821E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift */,
 				5F0EECEF21EED5F300320216 /* Siri_Shortcut.swift */,
 				D35C59ED2206095B00C54FC4 /* AppBottomNavigationController.swift */,
+				6DFA953B224A6DE20036C944 /* CategoryAccountManagementViewController.swift */,
+				6DFA953D224A70440036C944 /* GraphViewController.swift */,
+				6DFA953F224A716C0036C944 /* CSVViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -376,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DFA953A224A6B9C0036C944 /* Podfile in Resources */,
 				770AC2FA21AD04CC00799E23 /* places.txt in Resources */,
 				7793DF0421AC4D79001A61EA /* LaunchScreen.storyboard in Resources */,
 				D3A01A8021E7F9F600DDCFD4 /* TranscriptTableViewCell.xib in Resources */,
@@ -432,6 +445,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-My_Accounting_Book/Pods-My_Accounting_Book-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/DatePickerDialog/DatePickerDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/Dropper/Dropper.framework",
@@ -453,6 +467,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DatePickerDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dropper.framework",
@@ -535,12 +550,15 @@
 				D3144A8D21D727890076ECC0 /* StartPageViewController.swift in Sources */,
 				770AC2F821AC704600799E23 /* MyExtensions.swift in Sources */,
 				D35C59EE2206095B00C54FC4 /* AppBottomNavigationController.swift in Sources */,
+				6DFA9540224A716C0036C944 /* CSVViewController.swift in Sources */,
 				77FD594121E1C87E00FA01B1 /* EditEntryViewController.swift in Sources */,
+				6DFA953E224A70440036C944 /* GraphViewController.swift in Sources */,
 				7791E5B021D7EA1A00CCEC7B /* OpenCVWrapper.mm in Sources */,
 				D3DB0C832206CCE100EE1C73 /* SearchTextField.swift in Sources */,
 				5F0EECF021EED5F300320216 /* Siri_Shortcut.swift in Sources */,
 				7793DF2921AC4E9C001A61EA /* Transaction.swift in Sources */,
 				77519E6921E2D621008C8EBF /* CreateEntryUsingTemplateViewController.swift in Sources */,
+				6DFA953C224A6DE20036C944 /* CategoryAccountManagementViewController.swift in Sources */,
 				770AC2F621AC5BBC00799E23 /* SuggestionTrie.swift in Sources */,
 				770AC2FE21ADD22700799E23 /* Popover.swift in Sources */,
 			);
