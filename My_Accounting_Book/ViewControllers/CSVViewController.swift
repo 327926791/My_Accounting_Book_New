@@ -38,8 +38,11 @@ class CSVViewController: UIViewController {
     // TEST IF REFERNCE OR VALUE
     var items = [[String]]()
     
-    
+
     @IBOutlet weak var tableView: UITableView!
+    
+
+ 
     @IBAction func generateButtonPressed(_ sender: Any) {
         /* indexing for category selected is index - 1, because the first
          element is "All Categories", which is a placehold not presentd
@@ -114,10 +117,10 @@ class CSVViewController: UIViewController {
         }
     }
     
+  
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     
     
