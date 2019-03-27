@@ -21,7 +21,7 @@ var categories: [String] = ["Food and Drink", "Apparel", "Rent", "Loan and Mortg
 var incomeCategories: [String] = ["Salary and Wage", "Business Profit", "Investment Return", "Bank Interest", "Payment Received", "Other"]
 
 class Transaction: Object {
-    @objc dynamic var id : Int = 0
+    @objc dynamic var id = UUID().uuidString
     @objc dynamic var type : Bool = EXPENSE
     @objc dynamic var amount : Double = 0
     @objc dynamic var account : String?
