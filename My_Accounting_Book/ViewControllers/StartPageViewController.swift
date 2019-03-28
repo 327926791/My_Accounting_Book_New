@@ -18,6 +18,8 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     var label1Array : [String] = [String]()
     var label2Array : [String] = [String]()
     var entryID : [String] = [String]()
+    //var modify_item : Transaction!
+   // var modify_id : String!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return label1Array.count
@@ -59,9 +61,22 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         let modify = UITableViewRowAction(style: .normal, title: "Modify") { (action, indexPath) in
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "modification_view")
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "modification_view") as! ModifyViewController
+
+            
+            let cell = tableView.cellForRow(at: indexPath) as! TranscriptTableViewCell
+            let obj = self.realm.objects(Transaction.self)
+            for item in obj {
+                if item.id == cell.id{
+                    nextViewController.id = cell.id
+                    nextViewController.obj = item
+                   // print(cell.id)
+                    //print(item)
+                }
+            }
+            //let nextViewController = storyBoard.instantiateViewController(withIdentifier: "modification_view")
             self.present(nextViewController, animated:true, completion:nil)
             //self.performSegue(withIdentifier: "modification_view", sender: self)// share item at indexPath
         }
