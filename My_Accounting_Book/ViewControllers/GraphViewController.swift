@@ -56,6 +56,7 @@ class GraphViewController: UIViewController {
             
             for row in data{
                 let newNote = CKRecord(recordType: "Backup")
+                newNote.setValue(row.id, forKey: "id")
                 newNote.setValue(row.type == true ? "true" : "false", forKey: "type")
                 newNote.setValue(row.amount, forKey: "amount")
                 newNote.setValue(row.account, forKey: "account")
@@ -87,7 +88,7 @@ class GraphViewController: UIViewController {
                 
                 for record in records{
                     let t = Transaction()
-                    
+                    t.id = (record.value(forKey: "id") as? String)!
                     t.type = record.value(forKey: "type")as? String == "true" ? true : false
                     t.account = record.value(forKey: "account") as? String
                     t.amount = (record.value(forKey: "amount") as? Double)!
