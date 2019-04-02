@@ -1013,7 +1013,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHh-1a-XiH" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="95" width="375" height="343"/>
+                                <rect key="frame" x="0.0" y="95" width="375" height="318"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -1023,6 +1023,22 @@
                                 <state key="normal" title="Generate CSV"/>
                                 <connections>
                                     <segue destination="1La-sv-pFh" kind="show" id="s8U-1I-T7a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NW-It-xUu">
+                                <rect key="frame" x="13" y="408" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Backup"/>
+                                <connections>
+                                    <action selector="backupButtonPressed:" destination="PGP-pD-57E" eventType="touchUpInside" id="t5e-Ke-OGz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61f-TH-GvQ">
+                                <rect key="frame" x="310" y="408" width="53" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Restore"/>
+                                <connections>
+                                    <action selector="restoreButtonPressed:" destination="PGP-pD-57E" eventType="touchUpInside" id="bdE-BN-0CA"/>
                                 </connections>
                             </button>
                         </subviews>

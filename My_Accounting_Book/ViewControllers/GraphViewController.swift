@@ -10,8 +10,11 @@ import UIKit
 import Charts
 import RealmSwift
 import DatePickerDialog
+import CloudKit
+import SwiftEntryKit
 
 class GraphViewController: UIViewController {
+    let database = CKContainer.default().privateCloudDatabase
     
     let realm = try! Realm()
     
@@ -32,63 +35,136 @@ class GraphViewController: UIViewController {
     
     var items = [[String]]()
     
+    @IBAction func backupButtonPressed(_ sender: Any) {
+        saveToCloud()
+    }
+    
+    @IBAction func restoreButtonPressed(_ sender: Any) {
+        readFromCloud()
+    }
+    
+    func saveToCloud(){
+        let data = realm.objects(Transaction.self)
+        if data.count > 0 {
+            let query = CKQuery(recordType: "Backup", predicate: NSPredicate(value: true))
+            database.perform(query, inZoneWith: nil) { (records, _) in
+                guard let records = records else {return}
+                for record in records{
+                    self.database.delete(withRecordID: record.recordID, completionHandler: { (_, _) in})
+                }
+            }
+            
+            for row in data{
+                let newNote = CKRecord(recordType: "Backup")
+                newNote.setValue(row.type == true ? "true" : "false", forKey: "type")
+                newNote.setValue(row.amount, forKey: "amount")
+                newNote.setValue(row.account, forKey: "account")
+                newNote.setValue(row.category, forKey: "category")
+                newNote.setValue(row.dt, forKey: "dt")
+                database.save(newNote) { (record, error) in
+                    guard record != nil else {return}
+                    print("saved successfully")
+                }
+            }
+            ShowSuccessMessage(text: "Successfully backed up")
+        }
+    }
+    
+    
+    var notes = [CKRecord]()
+    // gets back everything
+    func readFromCloud(){
+        let query = CKQuery(recordType: "Backup", predicate: NSPredicate(value: true))
+        database.perform(query, inZoneWith: nil) { (records, _) in
+            guard let records = records else {return}
+            // pull the data out of records
+            self.notes = records
+            
+            DispatchQueue.main.async {
+                try! self.realm.write {
+                    self.realm.deleteAll()
+                }
+                
+                for record in records{
+                    let t = Transaction()
+                    
+                    t.type = record.value(forKey: "type")as? String == "true" ? true : false
+                    t.account = record.value(forKey: "account") as? String
+                    t.amount = (record.value(forKey: "amount") as? Double)!
+                    t.category = record.value(forKey: "category") as? String
+                    t.dt = record.value(forKey: "dt") as? String
+                    t.amountStr = String(t.amount)
+                    t.location = ""
+                    t.text = ""
+                    do {
+                        try
+                            self.realm.write {
+                                self.realm.add(t)
+                        }
+                    }
+                    catch {
+                        print(error)
+                    }
+                }
+                self.ShowSuccessMessage(text: "Database restored from iCloud")
+            }
+        }
+    }
     
     @IBAction func plotButtonPressed(_ sender: Any) {
         let data = realm.objects(Transaction.self)
-        
         var allCategorySelectedFlag: Bool = false
         var categoryAmountDict: [String: Double] = [:]
         if categorySelectionIndexTracker.contains(0){ // 0 is the index for "All Categories"
             allCategorySelectedFlag = true
         }
-        
-        
-        
+
         chartView.chartDescription?.enabled = false
         chartView.drawHoleEnabled = false
         chartView.rotationAngle = 0
         chartView.rotationEnabled = false
         chartView.isUserInteractionEnabled = false
         
+        var hasValue : Bool = false
+        
         for row in data{
-            
             let categoryIndexForThisRow = categories.firstIndex(of: row.category!)
             let accountIndexForThisRow = accounts.firstIndex(of: row.account!)
             if categoryIndexForThisRow != nil && accountIndexForThisRow != nil{
                 if ( allCategorySelectedFlag == true || categorySelectionIndexTracker.contains(categoryIndexForThisRow!+1) ) &&
                     accountSelectionIndexTracker.contains(accountIndexForThisRow!) &&
                     (convertDateToInt(row.dt!) <= convertDateToInt(endDate) && convertDateToInt(row.dt!) >= convertDateToInt(startDate)){
+                    hasValue = true
+                    if categoryAmountDict[row.category!] != nil{
+                        categoryAmountDict[row.category!]! += row.amount
+                    } else{
+                        categoryAmountDict[row.category!] = row.amount
+                    }
                 }
             }
         }
+
+        if(!hasValue){
+            return
+        }
+    
+        let c1 = UIColor(rgb: 0x3A015C)
+        let c2 = UIColor(rgb: 0x4F0147)
+        let c3 = UIColor(rgb: 0x35012C)
+        let c4 = UIColor(rgb: 0x290025)
+        let c5 = UIColor(rgb: 0x11001C)
+
+        var colors: [NSUIColor] = Array()
+        var entries: [PieChartDataEntry] = Array()
+        for (categoryName, amount) in categoryAmountDict{
+            entries.append(PieChartDataEntry(value: amount, label: categoryName))
+//            print("Category Name: \(categoryName), Amount: \(amount)")
+        }
         
-        //        let c1 = NSUIColor(hex: 0x3A015C)
-        //        let c2 = NSUIColor(hex: 0x4F0147)
-        //        let c3 = NSUIColor(hex: 0x35012C)
-        //        let c4 = NSUIColor(hex: 0x290025)
-        //        let c5 = NSUIColor(hex: 0x11001C)
-        //
-        //        var colors: [NSUIColor] = Array()
-        //
-        //
-        //        var entries: [PieChartDataEntry] = Array()
-        //        var hasValue = false
-        //
-        //        if amountTransportation > 0{
-        //            entries.append(PieChartDataEntry(value: Double(amountTransportation), label: "Transportation"))
-        //
-        //            colors.append(c1)
-        //            hasValue = true
-        //        }
-        //
-        //        if(!hasValue){
-        //            return
-        //        }
-        
-        //        let dataSet = PieChartDataSet(values: entries, label: "")
-        //        dataSet.colors = colors
-        //        dataSet.drawValuesEnabled = false
-        //        pieView.data = PieChartData(dataSet: dataSet)
+        let dataSet = PieChartDataSet(values: entries, label: "")
+        dataSet.colors = [c1, c2, c3, c4, c5]
+        dataSet.drawValuesEnabled = false
+        chartView.data = PieChartData(dataSet: dataSet)
     }
     
     override func viewDidLoad() {
@@ -137,6 +213,25 @@ class GraphViewController: UIViewController {
     }
     @IBOutlet weak var chartView: PieChartView!
     @IBOutlet weak var selectView: UITableView!
+    
+    private func ShowSuccessMessage(text: String) {
+        var attributes = EKAttributes.topFloat
+        attributes.entryBackground = .gradient(gradient: .init(colors: [.blue, .lightGray], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.statusBar = .dark
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: 300), height: .intrinsic)
+        
+        let title = EKProperty.LabelContent(text: "Success", style: .init(font: UIFont (name: "HelveticaNeue-Light", size: 20)!, color: UIColor.yellow))
+        let description = EKProperty.LabelContent(text: text, style: .init(font: UIFont (name: "HelveticaNeue-Light", size: 15)!, color: UIColor.yellow))
+        let image = EKProperty.ImageContent(image: UIImage(named: "Header")!, size: CGSize(width: 35, height: 35))
+        let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
 }
 
 extension GraphViewController: UITableViewDelegate, UITableViewDataSource{

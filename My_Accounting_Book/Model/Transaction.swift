@@ -23,7 +23,6 @@ var accounts: [String] = Array()
 var categories: [String] = Array()
 var incomeCategories: [String] = Array()
 
-
 class Transaction: Object {
     @objc dynamic var id : Int = 0
     @objc dynamic var type : Bool = EXPENSE
