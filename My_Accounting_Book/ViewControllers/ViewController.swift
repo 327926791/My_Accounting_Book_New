@@ -137,7 +137,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //gyq
     
     @objc func pageViewTaped(){
-        print("end editting")
+        //print("end editting")
         textField_CreateEntry_Amount.endEditing(true)
         textField_CreateEntry_Location.endEditing(true)
         textField_CreateEntry_Description.endEditing(true)
@@ -179,11 +179,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let amountArray = realm.objects(Transaction.self).filter("amountStr BEGINSWITH '\(amountStr)'").sorted(byKeyPath: "dt", ascending: false)
         if amountArray.count != 0 {
             print(amountArray[0].amount)
-            if (amountArray[0].type){
-                segCtrl_CreateEntry_Type.selectedSegmentIndex = 1
+            if (amountArray[0].type == true){
+                segCtrl_CreateEntry_Type.selectedSegmentIndex = 0
             }
             else {
-                segCtrl_CreateEntry_Type.selectedSegmentIndex = 0
+                segCtrl_CreateEntry_Type.selectedSegmentIndex = 1
             }
             button_CreateEntry_Account.setTitle(amountArray[0].account!, for: .normal)
             

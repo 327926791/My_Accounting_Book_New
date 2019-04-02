@@ -17,7 +17,9 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var transcriptTalbeView: UITableView!
     var label1Array : [String] = [String]()
     var label2Array : [String] = [String]()
-    var entryID : [Int] = [Int]()
+    var entryID : [String] = [String]()
+    //var modify_item : Transaction!
+   // var modify_id : String!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return label1Array.count
@@ -32,6 +34,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        //print("id = ", self.entryID)
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // delete item at indexPath
             let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete the transaction?", preferredStyle: .alert)
@@ -40,6 +43,11 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
                 //let selected_row = tableView.indexPathForSelectedRow()
                 //var cell : TranscriptTableViewCell
                 let cell = tableView.cellForRow(at: indexPath) as! TranscriptTableViewCell
+                //self.tableArray.remove(at: indexPath.row)
+                self.label1Array.remove(at: indexPath.row)
+                self.label2Array.remove(at: indexPath.row)
+                self.entryID.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
                 self.delete_entry(id: cell.id)
                 
             })
@@ -53,9 +61,22 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         let modify = UITableViewRowAction(style: .normal, title: "Modify") { (action, indexPath) in
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "modification_view")
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "modification_view") as! ModifyViewController
+
+            
+            let cell = tableView.cellForRow(at: indexPath) as! TranscriptTableViewCell
+            let obj = self.realm.objects(Transaction.self)
+            for item in obj {
+                if item.id == cell.id{
+                    nextViewController.id = cell.id
+                    nextViewController.obj = item
+                   // print(cell.id)
+                    //print(item)
+                }
+            }
+            //let nextViewController = storyBoard.instantiateViewController(withIdentifier: "modification_view")
             self.present(nextViewController, animated:true, completion:nil)
             //self.performSegue(withIdentifier: "modification_view", sender: self)// share item at indexPath
         }
@@ -71,8 +92,18 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         return indexPath
     }
     
-    func delete_entry(id : Int) {
+    func delete_entry(id : String) {
         print("delete entry with id: \(id)")
+        //let realm = try! Realm()
+        let obj = realm.objects(Transaction.self)
+        for item in obj {
+            if item.id == id{
+                try! realm.write{
+                    realm.delete(item)
+                }
+            }
+        }
+
     }
     
     var DropdownButtonDisplay = [String]()
@@ -432,6 +463,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
         
         label1Array.removeAll()
         label2Array.removeAll()
+        entryID.removeAll()
         var label1 : String
         var label2 : String
         var sort_Condition : String

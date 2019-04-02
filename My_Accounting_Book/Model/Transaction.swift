@@ -24,7 +24,7 @@ var categories: [String] = Array()
 var incomeCategories: [String] = Array()
 
 class Transaction: Object {
-    @objc dynamic var id : Int = 0
+    @objc dynamic var id = UUID().uuidString
     @objc dynamic var type : Bool = EXPENSE
     @objc dynamic var amount : Double = 0
     @objc dynamic var account : String?
