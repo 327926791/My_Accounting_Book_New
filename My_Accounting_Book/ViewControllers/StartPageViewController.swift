@@ -49,6 +49,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.entryID.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 self.delete_entry(id: cell.id)
+                self.viewDidLoad()
                 
             })
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
