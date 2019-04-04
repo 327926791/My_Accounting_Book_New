@@ -111,8 +111,7 @@ class StartPageViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     private var realm = try! Realm(configuration: Realm.Configuration(
-        schemaVersion: 2,
-        deleteRealmIfMigrationNeeded: true
+        schemaVersion: 2
     ))
     
     

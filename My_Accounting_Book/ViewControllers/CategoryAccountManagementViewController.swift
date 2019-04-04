@@ -46,7 +46,7 @@ class CategoryAccountManagementViewController: UIViewController {
             }
             
             self.tableView.reloadData()
-            self.ShowSuccessMessage(text: "Addition Successful, restart app to take effect")
+            self.ShowSuccessMessage(text: "Addition Successful")
         }
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create New Item"
@@ -121,7 +121,7 @@ class CategoryAccountManagementViewController: UIViewController {
                 }
             }
             
-            self.ShowSuccessMessage(text: "Renaming Successful, restart app to take effect")
+            self.ShowSuccessMessage(text: "Renaming Successful")
         }
         
         alert.addTextField { (alertTextField) in
@@ -178,7 +178,7 @@ class CategoryAccountManagementViewController: UIViewController {
         
         tableView.reloadData()
         
-        ShowSuccessMessage(text: "Deletion Successful, restart app to take effect")
+        ShowSuccessMessage(text: "Deletion Successful")
     }
     
     @IBOutlet weak var tableView: UITableView!
