@@ -14,6 +14,7 @@
 		6DFA953C224A6DE20036C944 /* CategoryAccountManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA953B224A6DE20036C944 /* CategoryAccountManagementViewController.swift */; };
 		6DFA953E224A70440036C944 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA953D224A70440036C944 /* GraphViewController.swift */; };
 		6DFA9540224A716C0036C944 /* CSVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA953F224A716C0036C944 /* CSVViewController.swift */; };
+		6DFD0CF722510C1D00EDA062 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DFD0CF622510C1D00EDA062 /* CloudKit.framework */; };
 		770AC2F621AC5BBC00799E23 /* SuggestionTrie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2F521AC5BBC00799E23 /* SuggestionTrie.swift */; };
 		770AC2F821AC704600799E23 /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770AC2F721AC704600799E23 /* MyExtensions.swift */; };
 		770AC2FA21AD04CC00799E23 /* places.txt in Resources */ = {isa = PBXBuildFile; fileRef = 770AC2F921AD04CC00799E23 /* places.txt */; };
@@ -75,6 +76,7 @@
 		6DFA953B224A6DE20036C944 /* CategoryAccountManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAccountManagementViewController.swift; sourceTree = "<group>"; };
 		6DFA953D224A70440036C944 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		6DFA953F224A716C0036C944 /* CSVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVViewController.swift; sourceTree = "<group>"; };
+		6DFD0CF622510C1D00EDA062 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		71F6DE661276E491526E9D82 /* Pods_My_Accounting_BookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Accounting_BookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		770AC2F521AC5BBC00799E23 /* SuggestionTrie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTrie.swift; sourceTree = "<group>"; };
 		770AC2F721AC704600799E23 /* MyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F0EECEE21EECC8900320216 /* Intents.framework in Frameworks */,
+				6DFD0CF722510C1D00EDA062 /* CloudKit.framework in Frameworks */,
 				7724D85821CDA98300D0305E /* libz.tbd in Frameworks */,
 				C26B8DAC7A143FF2B8C650EA /* Pods_My_Accounting_Book.framework in Frameworks */,
 			);
@@ -246,6 +249,7 @@
 		A3664E5D5C97A3DB72C69145 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6DFD0CF622510C1D00EDA062 /* CloudKit.framework */,
 				5F0EECED21EECC8900320216 /* Intents.framework */,
 				7724D85721CDA98300D0305E /* libz.tbd */,
 				3B2F9B7C0E8A90B105541062 /* Pods_My_Accounting_Book.framework */,
@@ -351,7 +355,13 @@
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.Siri = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
